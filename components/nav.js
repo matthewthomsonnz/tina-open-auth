@@ -2,7 +2,7 @@ import * as React from "react";
 import { InlineText, InlineGroup } from "react-tinacms-inline";
 
 export const Nav = ({ data }) => {
-console.log(data);
+
   return (
       <InlineGroup
         focusRing={{ offset: -12 }}

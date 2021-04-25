@@ -10,12 +10,15 @@ import {
 import { usePlugin } from 'tinacms'
 import { GetStaticProps } from 'next'
 import { Nav } from "../components/nav";
-import { InlineForm } from "react-tinacms-inline";
+import { InlineForm, InlineGroup } from "react-tinacms-inline";
 
 export default function Home({ file, preview }) {
   const formOptions = {
     label: 'Home Page',
-    fields: [{ name: 'title', component: 'text' }],
+    fields: [{ name: 'title', component: 'text' }, ...NAV_FIELDS],
+    onSubmit: (values) => {
+      alert(`Submitting ${values.title}`)
+    }
   }
 
   /*
@@ -25,7 +28,6 @@ export default function Home({ file, preview }) {
   usePlugin(form)
 
   useGithubToolbarPlugins()
-console.log(data);
 
   return (
     <div className="container">
@@ -34,7 +36,15 @@ console.log(data);
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <InlineForm form={form}>
+      <InlineGroup
+        focusRing={{ offset: -12 }}
+        insetControls={true}
+        name="nav"
+        fields={NAV_FIELDS}
+      >
         <Nav data={data.nav} />
+      </InlineGroup>
+
       </InlineForm>
       <main>
         <h1 className="title">
@@ -225,3 +235,43 @@ export const getStaticProps: GetStaticProps = async function ({
     },
   }
 }
+
+
+export const NAV_FIELDS = [
+  {
+    label: "Wordmark",
+    name: "wordmark",
+    component: "group",
+    fields: [
+      {
+        label: "Name",
+        name: "name",
+        component: "text",
+      },
+    ],
+  },
+  {
+    label: "Nav Items",
+    name: "items",
+    component: "group-list",
+    itemProps: (item) => ({
+      label: item.label,
+    }),
+    defaultItem: () => ({
+      label: "Nav Link",
+      link: "/",
+    }),
+    fields: [
+      {
+        label: "Label",
+        name: "label",
+        component: "text",
+      },
+      {
+        label: "Link",
+        name: "link",
+        component: "text",
+      },
+    ],
+  },
+];
