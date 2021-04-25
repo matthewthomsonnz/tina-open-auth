@@ -7,7 +7,7 @@ import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
 } from 'react-tinacms-github'
-import { usePlugin } from 'tinacms'
+import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { GetStaticProps } from 'next'
 import { Nav } from "../components/nav";
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
@@ -15,18 +15,32 @@ import { InlineForm, InlineGroup } from "react-tinacms-inline";
 export default function Home({ file, preview, nav }) {
   const formOptions = {
     label: 'Home Page',
-    fields: [{ name: 'title', component: 'text' }, ...NAV_FIELDS],
+    fields: [{ name: 'title', component: 'text' }],
     onSubmit: (values) => {
       alert(`Submitting ${values.title}`)
     }
   }
-console.log(nav);
 
   /*
    ** Register a JSON Tina Form
    */
   const [data, form] = useGithubJsonForm(file, formOptions)
   usePlugin(form)
+
+  const navFormOptions = {
+    label: 'nav',
+    fields: [...NAV_FIELDS],
+    onSubmit: (values) => {
+      alert(`Submitting ${values.title}`)
+    }
+  }
+
+  /*
+   ** Register a JSON Tina Form
+   */
+  const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
+  useFormScreenPlugin(navForm)
+
 
   useGithubToolbarPlugins()
 
@@ -36,14 +50,14 @@ console.log(nav);
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <InlineForm form={form}>
+      <InlineForm form={navForm}>
       <InlineGroup
         focusRing={{ offset: -12 }}
         insetControls={true}
         name="nav"
         fields={NAV_FIELDS}
       >
-        <Nav data={data.nav} />
+        <Nav data={navData.nav} />
       </InlineGroup>
 
       </InlineForm>
@@ -243,6 +257,10 @@ export const getStaticProps: GetStaticProps = async function ({
         fileRelativePath: 'content/home.json',
         data: (await import('../content/home.json')).default,
       },
+      nav: {
+        fileRelativePath: 'content/nav.json',
+        data: (await import('../content/nav.json')).default,
+      },
     },
   }
 }
@@ -263,7 +281,7 @@ export const NAV_FIELDS = [
   },
   {
     label: "Nav Items",
-    name: "items",
+    name: "nav.items",
     component: "group-list",
     itemProps: (item) => ({
       label: item.label,
