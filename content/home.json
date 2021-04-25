@@ -197,5 +197,12 @@
       "label": "Nav Link",
       "link": "/ok-then"
     }
-  ]
+  ],
+  "data": {
+    "blocks": [
+      {
+        "_template": "title-block"
+      }
+    ]
+  }
 }
