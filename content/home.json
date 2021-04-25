@@ -2,7 +2,7 @@
   "title": "Give Me Your knots 🦙",
   "nav": {
     "wordmark": {
-      "name": "Company Name",
+      "name": "yesh",
       "icon": {
         "color": "primary",
         "name": "FiAperture",
@@ -13,6 +13,10 @@
     "items": [
       {
         "label": "Contact",
+        "link": "/"
+      },
+      {
+        "label": "Nav Link",
         "link": "/"
       },
       {
@@ -187,5 +191,11 @@
         ]
       }
     ]
-  }
+  },
+  "items": [
+    {
+      "label": "Nav Link",
+      "link": "/ok-then"
+    }
+  ]
 }
