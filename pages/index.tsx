@@ -2,7 +2,7 @@ import Head from 'next/head'
 /*
  ** Import helpers and GetStaticProps type
  */
-import { getGithubPreviewProps, parseJson } from 'next-tinacms-github'
+import { getGithubPreviewProps, parseJson, getGithubFile } from 'next-tinacms-github'
 import {
   useGithubJsonForm,
   useGithubToolbarPlugins,
@@ -12,7 +12,7 @@ import { GetStaticProps } from 'next'
 import { Nav } from "../components/nav";
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
 
-export default function Home({ file, preview }) {
+export default function Home({ file, preview, nav }) {
   const formOptions = {
     label: 'Home Page',
     fields: [{ name: 'title', component: 'text' }, ...NAV_FIELDS],
@@ -20,6 +20,7 @@ export default function Home({ file, preview }) {
       alert(`Submitting ${values.title}`)
     }
   }
+console.log(nav);
 
   /*
    ** Register a JSON Tina Form
@@ -217,11 +218,21 @@ export const getStaticProps: GetStaticProps = async function ({
   previewData,
 }) {
   if (preview) {
-    return getGithubPreviewProps({
+    const homeFile = await getGithubFile({
       ...previewData,
-      fileRelativePath: 'content/home.json',
-      parse: parseJson,
+      fileRelativePath: "content/home.json",
+      parse: parseJson
+    });
+    const nav = await getGithubFile({
+      ...previewData,
+      fileRelativePath: "content/nav.json",
+      parse: parseJson
     })
+    return {props: {
+      file: homeFile,
+      nav,
+      preview:true
+    }};
   }
   return {
     props: {

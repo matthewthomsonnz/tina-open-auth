@@ -1,0 +1,31 @@
+{
+    "nav": {
+        "wordmark": {
+            "name": "yesh",
+            "icon": {
+            "color": "primary",
+            "name": "FiAperture",
+            "style": "float",
+            "size": "small"
+            }
+        },
+        "items": [
+            {
+            "label": "Contact",
+            "link": "/"
+            },
+            {
+            "label": "Nav Link",
+            "link": "/"
+            },
+            {
+            "label": "Pricing",
+            "link": "/"
+            },
+            {
+            "label": "Services",
+            "link": "/"
+            }
+        ]
+        }
+}
