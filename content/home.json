@@ -1,5 +1,5 @@
 {
-  "title": "Give Me Your Tots 🦙",
+  "title": "Give Me Your knots 🦙",
   "nav": {
     "wordmark": {
       "name": "Company Name",
@@ -12,11 +12,11 @@
     },
     "items": [
       {
-        "label": "Pricing",
+        "label": "Contact",
         "link": "/"
       },
       {
-        "label": "Contact",
+        "label": "Pricing",
         "link": "/"
       },
       {
