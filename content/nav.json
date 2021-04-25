@@ -27,5 +27,11 @@
         "link": "/"
       }
     ]
-  }
+  },
+  "items": [
+    {
+      "label": "Nav Link",
+      "link": "/"
+    }
+  ]
 }
