@@ -29,10 +29,11 @@ export const Nav = ({ data }) => {
           <div className="flex-grow md:flex md:justify-end">
             <nav className="flex flex-wrap items-center justify-between sm:justify-end text-base -mx-2 sm:-mx-6 md:mx-0">
               {data.items.map(function (item, index) {
+                console.log(item);
                 return (
                   <a
                     key={index}
-                    href="#"
+                    href={item.link}
                     className={`mx-2 sm:mx-6 md:mx-8 text-sm tracking-wide font-semibold transition duration-150 ease-out text-gray-600 dark:text-gray-200`}
                   >
                     {item.label}
