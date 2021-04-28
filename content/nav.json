@@ -12,19 +12,19 @@
     "items": [
       {
         "label": "Contact2",
-        "link": "/contact-2"
+        "link": "contact-2"
       },
       {
         "label": "Nav Link",
-        "link": "/"
+        "link": ""
       },
       {
         "label": "Pricing",
-        "link": "/"
+        "link": ""
       },
       {
         "label": "Services",
-        "link": "/"
+        "link": ""
       }
     ]
   },

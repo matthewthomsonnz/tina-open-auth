@@ -13,43 +13,27 @@ import { Nav } from "../components/nav";
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
 
 export default function Home({ file, preview, nav }) {
-  const formOptions = {
-    label: 'Home Page',
-    fields: [{ name: 'title', component: 'text' }],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
+ console.log(file,preview,nav);
+ const navFormOptions = {
+  label: 'nav',
+  fields: [...NAV_FIELDS],
+  onSubmit: (values) => {
+    alert(`Submitting ${values.title}`)
   }
+}
 
-  /*
-   ** Register a JSON Tina Form
-   */
-  const [data, form] = useGithubJsonForm(file, formOptions)
-  usePlugin(form)
-
-  const navFormOptions = {
-    label: 'nav',
-    fields: [...NAV_FIELDS],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
-  }
-
-  /*
-   ** Register a JSON Tina Form
-   */
-  const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
-  useFormScreenPlugin(navForm)
-
-
-  useGithubToolbarPlugins()
-
+/*
+ ** Register a JSON Tina Form
+ */
+const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
+useFormScreenPlugin(navForm)
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+     
       <InlineForm form={navForm}>
       <InlineGroup
         focusRing={{ offset: -12 }}
@@ -63,7 +47,7 @@ export default function Home({ file, preview, nav }) {
       </InlineForm>
       <main>
         <h1 className="title">
-          {data.title}
+          {'title'}
         </h1>
 
       </main>
@@ -218,27 +202,12 @@ export default function Home({ file, preview, nav }) {
 /*
  ** Fetch data with getStaticProps based on 'preview' mode
  */
-export const getStaticProps: GetStaticProps = async function ({
+ export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {
-  if (preview) {
-    const homeFile = await getGithubFile({
-      ...previewData,
-      fileRelativePath: "content/home.json",
-      parse: parseJson
-    });
-    const nav = await getGithubFile({
-      ...previewData,
-      fileRelativePath: "content/nav.json",
-      parse: parseJson
-    })
-    return {props: {
-      file: homeFile,
-      nav,
-      preview:true
-    }};
-  }
+
+ 
   return {
     props: {
       sourceProvider: null,
@@ -251,31 +220,32 @@ export const getStaticProps: GetStaticProps = async function ({
       nav: {
         fileRelativePath: 'content/nav.json',
         data: (await import('../content/nav.json')).default,
-      },
+      }
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async function () {
-
-
   var test = (await import('../content/nav.json')).default
-console.log('begin');
+  var paths =test.nav.items.map((item)=>{
 
-  console.log(test.nav.items);
-var paths =test.nav.items.map((item)=>{
+    return {params: {id: item.link}}
+  })
+  // console.log(1);
+  // console.log(paths);
+  // console.log(2);
+  // console.log([
+  //   { params: { id: "testpage"} } // See the "paths" section below
+  // ]);
+  
+  
 
-  return {params: {id: item.link}}
-})
-    // const nav = await getGithubFile({
-    //   fileRelativePath: "content/nav.json",
-    //   parse: parseJson
-    // })
-    return {
-      paths,
-      fallback: true
-    };
+  return {
+    paths: paths,
+    fallback: false // See the "fallback" section below
+  };
   }
+
 
 export const NAV_FIELDS = [
   {
