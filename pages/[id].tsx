@@ -34,17 +34,9 @@ useFormScreenPlugin(navForm)
         <link rel="icon" href="/favicon.ico" />
       </Head>
      
-      <InlineForm form={navForm}>
-      <InlineGroup
-        focusRing={{ offset: -12 }}
-        insetControls={true}
-        name="nav"
-        fields={NAV_FIELDS}
-      >
+ 
         <Nav data={navData.nav} />
-      </InlineGroup>
 
-      </InlineForm>
       <main>
         <h1 className="title">
           {'title'}
@@ -202,12 +194,49 @@ useFormScreenPlugin(navForm)
 /*
  ** Fetch data with getStaticProps based on 'preview' mode
  */
- export const getStaticProps: GetStaticProps = async function ({
+//  export const getStaticProps: GetStaticProps = async function ({
+//   preview,
+//   previewData,
+// }) {
+
+ 
+//   return {
+//     props: {
+//       sourceProvider: null,
+//       error: null,
+//       preview: false,
+//       file: {
+//         fileRelativePath: 'content/home.json',
+//         data: (await import('../content/home.json')).default,
+//       },
+//       nav: {
+//         fileRelativePath: 'content/nav.json',
+//         data: (await import('../content/nav.json')).default,
+//       }
+//     },
+//   }
+// }
+export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
 }) {
-
- 
+  if (preview) {
+    const homeFile = await getGithubFile({
+      ...previewData,
+      fileRelativePath: "content/home.json",
+      parse: parseJson
+    });
+    const nav = await getGithubFile({
+      ...previewData,
+      fileRelativePath: "content/nav.json",
+      parse: parseJson
+    })
+    return {props: {
+      file: homeFile,
+      nav,
+      preview:true
+    }};
+  }
   return {
     props: {
       sourceProvider: null,
@@ -220,25 +249,17 @@ useFormScreenPlugin(navForm)
       nav: {
         fileRelativePath: 'content/nav.json',
         data: (await import('../content/nav.json')).default,
-      }
+      },
     },
   }
 }
-
 export const getStaticPaths: GetStaticPaths = async function () {
   var test = (await import('../content/nav.json')).default
   var paths =test.nav.items.map((item)=>{
 
     return {params: {id: item.link}}
   })
-  // console.log(1);
-  // console.log(paths);
-  // console.log(2);
-  // console.log([
-  //   { params: { id: "testpage"} } // See the "paths" section below
-  // ]);
-  
-  
+
 
   return {
     paths: paths,
@@ -281,7 +302,7 @@ export const NAV_FIELDS = [
         label: "Link",
         name: "link",
         component: "text",
-      },
+      }
     ],
   },
 ];

@@ -15,7 +15,34 @@ import { InlineForm, InlineGroup } from "react-tinacms-inline";
 export default function Home({ file, preview, nav }) {
   const formOptions = {
     label: 'Home Page',
-    fields: [{ name: 'title', component: 'text' }],
+    fields: [
+      { name: 'title', component: 'text' },
+      {
+        name: "items",
+        label: "Repeater Items",
+        component: "group-list",
+        // itemProps: (item) => ({
+        //   label: item.label,
+        // }),
+        fields: [
+          {
+            name: "label",
+            label: "Label",
+            component: "text",
+          },
+          {
+            name: "background_color",
+            label: "Background color",
+            component: "color",
+          },
+          {
+            name: "fsdfdsf",
+            label: "Fsdfdsf",
+            component: "text",
+          },
+        ],
+      },
+    ],
     onSubmit: (values) => {
       alert(`Submitting ${values.title}`)
     }
@@ -41,6 +68,7 @@ export default function Home({ file, preview, nav }) {
   const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
   useFormScreenPlugin(navForm)
 
+  
 
   useGithubToolbarPlugins()
 
@@ -50,22 +78,24 @@ export default function Home({ file, preview, nav }) {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <InlineForm form={navForm}>
-      <InlineGroup
-        focusRing={{ offset: -12 }}
-        insetControls={true}
-        name="nav"
-        fields={NAV_FIELDS}
-      >
-        <Nav data={navData.nav} />
-      </InlineGroup>
 
-      </InlineForm>
+        <Nav data={navData.nav} />
+
       <main>
         <h1 className="title">
           {data.title}
         </h1>
-
+        <div className="container">
+        {data.items.map(function (item, index) {
+                console.log(item);
+                return (
+                  <div>
+                    {item.label}
+                  {item.link}
+                </div>
+                );
+              })}
+        </div>
       </main>
 
 
