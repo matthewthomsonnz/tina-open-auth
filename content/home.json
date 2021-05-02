@@ -197,7 +197,8 @@
       "background_color": "#4E2222",
       "label": "some label",
       "fsdfdsf": "wegwegweg",
-      "backgroundColor": "#7ED321"
+      "backgroundColor": "#7ED321",
+      "textColorOverride": "#FFFFFF"
     },
     {
       "label": "ur mom",
