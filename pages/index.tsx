@@ -12,7 +12,14 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { Nav } from "../components/nav";
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
 
-export default function Home({ file, preview, nav }) {
+
+import { Graph } from '../components/Graph';
+
+
+
+
+
+export default function Home({ file, preview, nav, args }) {
   const formOptions = {
     label: 'Home Page',
     fields: [
@@ -31,8 +38,13 @@ export default function Home({ file, preview, nav }) {
             component: "text",
           },
           {
-            name: "background_color",
+            name: "backgroundColor",
             label: "Background color",
+            component: "color",
+          },
+          {
+            name: "textColorOverride",
+            label: "Text color override",
             component: "color",
           },
           {
@@ -73,29 +85,37 @@ export default function Home({ file, preview, nav }) {
   useGithubToolbarPlugins()
 
   return (
-    <div className="container">
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
         <Nav data={navData.nav} />
-
+        <Graph 
+  title='Probability'
+  graphStyle='line'
+  colorA='rgba(188, 225, 98, 1)'
+  datasetA={[40, 20, 50, 45, 10, 10, 20]}
+  colorB='rgba(195, 138, 255, 1)'
+  datasetB={[70, 65, 60, 55, 50, 45, 40]}
+  xAxisLabel='(in minutes)'
+  datasetBLabel='Confidence level'
+/>
       <main>
         <h1 className="title">
           {data.title}
         </h1>
-        <div className="container">
         {data.items.map(function (item, index) {
-                console.log(item);
+          console.log(item);
+          
                 return (
-                  <div>
+                  <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
                     {item.label}
                   {item.link}
                 </div>
                 );
               })}
-        </div>
       </main>
 
 
@@ -219,6 +239,11 @@ export default function Home({ file, preview, nav }) {
           line-height: 1.5;
         }
 
+        .block {
+          width: 100%;
+          padding: 50px;
+        }
+
         @media (max-width: 600px) {
           .grid {
             width: 100%;
@@ -292,15 +317,9 @@ export const getStaticPaths: GetStaticPaths = async function () {
   var test = (await import('../content/nav.json')).default
 console.log('begin');
 
-  console.log(test.nav.items);
 var paths =test.nav.items.map((item)=>{
-
   return {params: {id: item.link}}
 })
-    // const nav = await getGithubFile({
-    //   fileRelativePath: "content/nav.json",
-    //   parse: parseJson
-    // })
     return {
       paths,
       fallback: true
