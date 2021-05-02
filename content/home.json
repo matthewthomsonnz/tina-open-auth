@@ -194,7 +194,9 @@
   },
   "items": [
     {
-      "background_color": "#4E2222"
+      "background_color": "#4E2222",
+      "label": "some label",
+      "fsdfdsf": "wegwegweg"
     },
     {
       "label": "ur mom",
