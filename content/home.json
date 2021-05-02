@@ -193,7 +193,9 @@
     ]
   },
   "items": [
-    {},
+    {
+      "background_color": "#4E2222"
+    },
     {
       "label": "ur mom",
       "link": "cool"
