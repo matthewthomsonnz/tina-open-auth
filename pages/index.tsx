@@ -19,7 +19,7 @@ import { Graph } from '../components/Graph';
 
 
 
-export default function Home({ file, preview, nav, args }) {
+export default function Home({ file, preview, nav }) {
   const formOptions = {
     label: 'Home Page',
     fields: [
@@ -66,19 +66,21 @@ export default function Home({ file, preview, nav, args }) {
   const [data, form] = useGithubJsonForm(file, formOptions)
   usePlugin(form)
 
-  const navFormOptions = {
-    label: 'nav',
-    fields: [...NAV_FIELDS],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
-  }
+  // const navFormOptions = {
+  //   label: 'nav',
+  //   fields: [...NAV_FIELDS],
+  //   onSubmit: (values) => {
+  //     alert(`Submitting ${values.title}`)
+  //   }
+  // }
 
-  /*
-   ** Register a JSON Tina Form
-   */
-  const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
-  useFormScreenPlugin(navForm)
+  // /*
+  //  ** Register a JSON Tina Form
+  //  */
+  
+  
+  // const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
+  // useFormScreenPlugin(navForm)
 
   
 
@@ -91,7 +93,7 @@ export default function Home({ file, preview, nav, args }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <Nav data={navData.nav} />
+        {/* <Nav data={navData.nav} /> */}
         <Graph 
   title='Probability'
   graphStyle='line'
@@ -270,9 +272,6 @@ export default function Home({ file, preview, nav, args }) {
   )
 }
 
-/*
- ** Fetch data with getStaticProps based on 'preview' mode
- */
 export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
@@ -314,9 +313,7 @@ export const getStaticProps: GetStaticProps = async function ({
 export const getStaticPaths: GetStaticPaths = async function () {
 
 
-  var test = (await import('../content/nav.json')).default
-console.log('begin');
-
+  var test = (await import('../content/nav.json')).default;
 var paths =test.nav.items.map((item)=>{
   return {params: {id: item.link}}
 })
