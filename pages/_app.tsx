@@ -29,8 +29,12 @@ console.log(cool);console.log('wefewf');
   /*
    ** Register a JSON Tina Form
    */
-  const [navData, navForm] = useGithubJsonForm(cool.nav, navFormOptions)
-  useFormScreenPlugin(navForm)
+  console.log('is below');
+  
+  console.log(cool.nav);
+  
+  // const [navData, navForm] = useGithubJsonForm(cool.nav, navFormOptions)
+  // useFormScreenPlugin(navForm)
   return <>{cool.children}</> // The fragment is just illustrational
 }
 
