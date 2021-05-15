@@ -16,11 +16,15 @@
       },
       {
         "label": "Nav Link",
+        "link": "/"
+      },
+      {
+        "label": "Nav Link",
         "link": "/w"
       },
       {
         "label": "Nav Link",
-        "link": "/"
+        "link": "/wwww"
       }
     ]
   },
