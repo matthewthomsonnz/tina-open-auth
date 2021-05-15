@@ -194,7 +194,10 @@
   },
   "items": [
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "label": "some label",
+      "backgroundColor": "#6B48B3",
+      "textColorOverride": "#3965E3"
     },
     {
       "_template": "GraphBlock"
