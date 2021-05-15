@@ -10,10 +10,13 @@
   "dependencies": {
     "chart.js": "^2.9.4",
     "dotenv": "^8.2.0",
+    "gatsby-tinacms-json": "^0.40.1",
     "next": "9.4.4",
     "next-tinacms-github": "^0.25.0-alpha.0",
+    "next-tinacms-json": "^0.40.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-slugify": "^2.0.3",
     "react-tinacms-github": "^0.31.0-alpha.4",
     "react-tinacms-inline": "^0.40.0",
     "styled-components": "^5.1.0",

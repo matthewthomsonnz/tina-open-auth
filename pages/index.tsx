@@ -7,39 +7,12 @@ import {
 } from 'react-tinacms-github'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Nav } from "../components/nav";
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
-
+import GraphBlock from './../blocks/GraphBlock'
+import InfoBlock from './../blocks/InfoBlock'
 
 import { Graph } from '../components/Graph';
 
-const InfoBlock = {
-  label: "Info",
-  name: "info",
-  // defaultItem: {
-  //   title: "",
-  //   center: false,
-  //   underline: true,
-  // },
-  fields: [
-    {
-      name: "label", label: "Label", component: "text"},
-      { name: "backgroundColor", label: "Background color", component: "color"},
-      { name: "textColorOverride", label: "Text color override", component: "color"},
-      { name: "fsdfdsf", label: "Fsdfdsf", component: "text"},
-  ],
-}
-
-const GraphBlock = {
-  label: "Graph",
-  name: "graph",
-  fields: [
-    {
-      name: "label", label: "Label", component: "text"},
-      { name: "backgroundColor", label: "Background color", component: "color"},
-      { name: "textColorOverride", label: "Text color override", component: "color"},
-  ],
-}
 export default function Home({ file, preview, nav }) {
   const formOptions = {
     label: 'Home Page',
@@ -51,7 +24,10 @@ export default function Home({ file, preview, nav }) {
         // itemProps: (item) => ({
         //   label: item.label,
         // }),
-
+        onSubmit: async () => {
+          console.log('fff');
+          
+        },
         templates: {
           InfoBlock,
           GraphBlock
@@ -68,16 +44,6 @@ export default function Home({ file, preview, nav }) {
   const [data, form] = useGithubJsonForm(file, formOptions)
   usePlugin(form)
 
-  const navFormOptions = {
-    label: 'nav',
-    fields: [...NAV_FIELDS],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
-  }
-  const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
-  useFormScreenPlugin(navForm)
-
   useGithubToolbarPlugins()
 
   return (
@@ -87,7 +53,6 @@ export default function Home({ file, preview, nav }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        <Nav data={navData.nav} />
      
       <main>
         <h1 className="title">
@@ -98,24 +63,28 @@ export default function Home({ file, preview, nav }) {
             case "InfoBlock":
               return (
                 <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
+                  <div className="container">
                   {item.label}
                 {item.link}
+                </div>
               </div>
               );
               break;
               case "GraphBlock":
                 return (
                   <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
-   <Graph 
-  title='Probability'
-  graphStyle='line'
-  colorA='rgba(188, 225, 98, 1)'
-  datasetA={[40, 20, 50, 45, 10, 10, 20]}
-  colorB='rgba(195, 138, 255, 1)'
-  datasetB={[70, 65, 60, 55, 50, 45, 40]}
-  xAxisLabel='(in minutes)'
-  datasetBLabel='Confidence level'
-/>
+                  <div className="container">
+
+                  <Graph 
+                  title='Probability'
+                  graphStyle='line'
+                  colorA='rgba(188, 225, 98, 1)'
+                  datasetA={[40, 20, 50, 45, 10, 10, 20]}
+                  colorB='rgba(195, 138, 255, 1)'
+                  datasetB={[70, 65, 60, 55, 50, 45, 40]}
+                  xAxisLabel='(in minutes)'
+                  datasetBLabel='Confidence level'
+                /></div>
                 </div>
                 );
                 break;
@@ -173,7 +142,7 @@ export const getStaticPaths: GetStaticPaths = async function () {
 
 
   var test = (await import('../content/nav.json')).default;
-var paths =test.nav.items.map((item)=>{
+var paths =test.items.map((item)=>{
   return {params: {id: item.link}}
 })
     return {
@@ -181,42 +150,3 @@ var paths =test.nav.items.map((item)=>{
       fallback: true
     };
   }
-
-export const NAV_FIELDS = [
-  {
-    label: "Wordmark",
-    name: "wordmark",
-    component: "group",
-    fields: [
-      {
-        label: "Name",
-        name: "name",
-        component: "text",
-      },
-    ],
-  },
-  {
-    label: "Nav Items",
-    name: "nav.items",
-    component: "group-list",
-    itemProps: (item) => ({
-      label: item.label,
-    }),
-    defaultItem: () => ({
-      label: "Nav Link",
-      link: "/",
-    }),
-    fields: [
-      {
-        label: "Label",
-        name: "label",
-        component: "text",
-      },
-      {
-        label: "Link",
-        name: "link",
-        component: "text",
-      },
-    ],
-  },
-];

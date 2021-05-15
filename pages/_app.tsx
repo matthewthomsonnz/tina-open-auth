@@ -12,28 +12,17 @@ import {
 import { GetStaticProps } from 'next'
 import { getGithubPreviewProps, parseJson, getGithubFile } from 'next-tinacms-github'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
-
-function MyComponent(cool) {
-  
-
-  const navFormOptions = {
-    label: 'nav',
-    fields: [...NAV_FIELDS],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
-  }
-
-  // const [navData, navForm] = useGithubJsonForm(cool.nav, navFormOptions)
-  // useFormScreenPlugin(navForm)
-  return <>{cool.children}</> 
-}
+import MyComponent from '../components/layout'
+import './../styles/global.css'
+import './../styles/reset.css'
+import { JsonCreatorPlugin } from "../components/jsonButton"
 
 export default class Site extends App {
   cms: TinaCMS
 
   constructor(props) {
     super(props)
+console.log(JsonCreatorPlugin);
 
     const github = new GithubClient({
       proxy: '/api/proxy-github',
@@ -51,6 +40,20 @@ export default class Site extends App {
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
     })
+    // this.cms.events.subscribe('github:commit', async event => {
+    //   if(event.response.content.name == "nav.json") {
+    //     var nav = ((await import('../content/nav.json')).default);
+    //     nav.items.forEach(async (item)=>{ 
+    //       console.log(item);
+    //       try {
+    //         (await import(`../content/${item.link}.json`));
+    //       } catch (exception_var) {
+    //         console.log(exception_var);
+    //       }
+    //     })
+        
+    //   }
+    // })
   }
 
   render() {
@@ -63,7 +66,8 @@ export default class Site extends App {
           error={pageProps.error}
         >
           <EditLink cms={this.cms} />
-          <MyComponent nav={pageProps.nav}>
+          <MyComponent>
+            
           <Component {...pageProps} />
           </MyComponent>
         </TinacmsGithubProvider>

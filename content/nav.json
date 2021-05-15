@@ -1,14 +1,5 @@
 {
-  "nav": {
-    "wordmark": {
-      "name": "yesh",
-      "icon": {
-        "color": "primary",
-        "name": "FiAperture",
-        "style": "float",
-        "size": "small"
-      }
-    },
+
     "items": [
       {
         "label": "Contact3",
@@ -16,24 +7,17 @@
       },
       {
         "label": "Nav Link",
-        "link": ""
+        "link": "egwewg"
       },
       {
         "label": "Pricing",
-        "link": ""
+        "link": "whewhwe"
       },
       {
         "label": "Services",
-        "link": ""
+        "link": "wehewhwe"
       }
-    ]
-  },
-  "items": [
-    {
-      "label": "Nav Link",
-      "link": "kewl"
-    }
-  ],
+    ],
   "wordmark": {
     "name": "no"
   }
