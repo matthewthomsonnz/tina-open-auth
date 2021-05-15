@@ -194,6 +194,19 @@
   },
   "items": [
     {
+      "_template": "GraphBlock"
+    },
+    {
+      "_template": "GraphBlock"
+    },
+    {
+      "_template": "InfoBlock",
+      "label": "test",
+      "backgroundColor": "#601D1D",
+      "textColorOverride": "#895454",
+      "fsdfdsf": "yes"
+    },
+    {
       "_template": "TitleBlock"
     },
     {
