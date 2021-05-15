@@ -15,8 +15,6 @@ import { usePlugin, useFormScreenPlugin } from 'tinacms'
 
 function MyComponent(cool) {
   
-console.log(cool);console.log('wefewf');
-
 
   const navFormOptions = {
     label: 'nav',
@@ -26,16 +24,9 @@ console.log(cool);console.log('wefewf');
     }
   }
 
-  /*
-   ** Register a JSON Tina Form
-   */
-  console.log('is below');
-  
-  console.log(cool.nav);
-  
   // const [navData, navForm] = useGithubJsonForm(cool.nav, navFormOptions)
   // useFormScreenPlugin(navForm)
-  return <>{cool.children}</> // The fragment is just illustrational
+  return <>{cool.children}</> 
 }
 
 export default class Site extends App {
@@ -48,53 +39,29 @@ export default class Site extends App {
       proxy: '/api/proxy-github',
       authCallbackRoute: '/api/create-github-access-token',
       clientId: process.env.GITHUB_CLIENT_ID,
-      baseRepoFullName: process.env.REPO_FULL_NAME, // e.g: tinacms/tinacms.org,
+      baseRepoFullName: process.env.REPO_FULL_NAME, 
     })
 
-    /**
-     * 1. Create the TinaCMS instance
-     */
     this.cms = new TinaCMS({
       enabled: !!props.pageProps.preview,
       apis: {
-        /**
-         * 2. Register the GithubClient
-         */
         github,
       },
-      /**
-       * 3. Register the Media Store
-       */
       media: new GithubMediaStore(github),
-      /**
-       * 4. Use the Sidebar and Toolbar
-       */
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
     })
-
-
   }
 
   render() {
     const { Component, pageProps } = this.props
-    console.log('weggg');
-    
-    console.log(this.props);
-    
     return (
-      /**
-       * 5. Wrap the page Component with the Tina and Github providers
-       */
       <TinaProvider cms={this.cms}>
         <TinacmsGithubProvider
           onLogin={onLogin}
           onLogout={onLogout}
           error={pageProps.error}
         >
-          {/**
-           * 6. Add a button for entering Preview/Edit Mode
-           */}
           <EditLink cms={this.cms} />
           <MyComponent nav={pageProps.nav}>
           <Component {...pageProps} />
@@ -138,8 +105,6 @@ export const EditLink = ({ cms }: EditLinkProps) => {
   )
 }
 
-
-
 export const getStaticProps: GetStaticProps = async function ({
   preview,
   previewData,
@@ -178,7 +143,6 @@ export const getStaticProps: GetStaticProps = async function ({
   }
 }
 
-
 export const NAV_FIELDS = [
   {
     label: "Wordmark",
@@ -195,7 +159,7 @@ export const NAV_FIELDS = [
   {
     label: "Nav Items",
     name: "nav.items",
-    component: "group-list",
+    component: "blocks",
     itemProps: (item) => ({
       label: item.label,
     }),

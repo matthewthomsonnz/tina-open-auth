@@ -1,7 +1,5 @@
 import Head from 'next/head'
-/*
- ** Import helpers and GetStaticProps type
- */
+
 import { getGithubPreviewProps, parseJson, getGithubFile } from 'next-tinacms-github'
 import {
   useGithubJsonForm,
@@ -15,44 +13,50 @@ import { InlineForm, InlineGroup } from "react-tinacms-inline";
 
 import { Graph } from '../components/Graph';
 
+const InfoBlock = {
+  label: "Info",
+  name: "info",
+  // defaultItem: {
+  //   title: "",
+  //   center: false,
+  //   underline: true,
+  // },
+  fields: [
+    {
+      name: "label", label: "Label", component: "text"},
+      { name: "backgroundColor", label: "Background color", component: "color"},
+      { name: "textColorOverride", label: "Text color override", component: "color"},
+      { name: "fsdfdsf", label: "Fsdfdsf", component: "text"},
+  ],
+}
 
-
-
-
+const GraphBlock = {
+  label: "Graph",
+  name: "graph",
+  fields: [
+    {
+      name: "label", label: "Label", component: "text"},
+      { name: "backgroundColor", label: "Background color", component: "color"},
+      { name: "textColorOverride", label: "Text color override", component: "color"},
+  ],
+}
 export default function Home({ file, preview, nav }) {
   const formOptions = {
     label: 'Home Page',
     fields: [
-      { name: 'title', component: 'text' },
       {
         name: "items",
         label: "Repeater Items",
-        component: "group-list",
+        component: "blocks",
         // itemProps: (item) => ({
         //   label: item.label,
         // }),
-        fields: [
-          {
-            name: "label",
-            label: "Label",
-            component: "text",
-          },
-          {
-            name: "backgroundColor",
-            label: "Background color",
-            component: "color",
-          },
-          {
-            name: "textColorOverride",
-            label: "Text color override",
-            component: "color",
-          },
-          {
-            name: "fsdfdsf",
-            label: "Fsdfdsf",
-            component: "text",
-          },
-        ],
+
+        templates: {
+          InfoBlock,
+          GraphBlock
+        },
+
       },
     ],
     onSubmit: (values) => {
@@ -60,29 +64,19 @@ export default function Home({ file, preview, nav }) {
     }
   }
 
-  /*
-   ** Register a JSON Tina Form
-   */
+  
   const [data, form] = useGithubJsonForm(file, formOptions)
   usePlugin(form)
 
-  // const navFormOptions = {
-  //   label: 'nav',
-  //   fields: [...NAV_FIELDS],
-  //   onSubmit: (values) => {
-  //     alert(`Submitting ${values.title}`)
-  //   }
-  // }
-
-  // /*
-  //  ** Register a JSON Tina Form
-  //  */
-  
-  
-  // const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
-  // useFormScreenPlugin(navForm)
-
-  
+  const navFormOptions = {
+    label: 'nav',
+    fields: [...NAV_FIELDS],
+    onSubmit: (values) => {
+      alert(`Submitting ${values.title}`)
+    }
+  }
+  const [navData, navForm] = useGithubJsonForm(nav, navFormOptions)
+  useFormScreenPlugin(navForm)
 
   useGithubToolbarPlugins()
 
@@ -93,8 +87,26 @@ export default function Home({ file, preview, nav }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-        {/* <Nav data={navData.nav} /> */}
-        <Graph 
+        <Nav data={navData.nav} />
+     
+      <main>
+        <h1 className="title">
+          {data.title}
+        </h1>
+        {data.items.map(function (item, index) {
+          switch (item._template) {
+            case "InfoBlock":
+              return (
+                <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
+                  {item.label}
+                {item.link}
+              </div>
+              );
+              break;
+              case "GraphBlock":
+                return (
+                  <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
+   <Graph 
   title='Probability'
   graphStyle='line'
   colorA='rgba(188, 225, 98, 1)'
@@ -104,170 +116,17 @@ export default function Home({ file, preview, nav }) {
   xAxisLabel='(in minutes)'
   datasetBLabel='Confidence level'
 />
-      <main>
-        <h1 className="title">
-          {data.title}
-        </h1>
-        {data.items.map(function (item, index) {
-          console.log(item);
-          
-                return (
-                  <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
-                    {item.label}
-                  {item.link}
                 </div>
                 );
+                break;
+            default:
+              break;
+          }
+          
+
               })}
       </main>
 
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-          color: ${preview && 'red'};
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .block {
-          width: 100%;
-          padding: 50px;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </div>
   )
 }

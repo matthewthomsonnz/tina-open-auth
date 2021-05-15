@@ -31,7 +31,7 @@
   "items": [
     {
       "label": "Nav Link",
-      "link": "/kewl"
+      "link": "kewl"
     }
   ]
 }

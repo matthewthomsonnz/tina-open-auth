@@ -10,8 +10,7 @@ export class Graph extends React.Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
-console.log('below');
-console.log(this.props);
+
     this.state = {
       showInfo:false
     }
