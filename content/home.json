@@ -200,7 +200,10 @@
       "textColorOverride": "#3965E3"
     },
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "label": "lights",
+      "backgroundColor": "#780E0E",
+      "textColorOverride": "#CF96DA"
     },
     {
       "_template": "InfoBlock",
