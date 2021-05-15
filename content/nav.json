@@ -12,11 +12,19 @@
     "items": [
       {
         "label": "Nav Link",
+        "link": "/"
+      },
+      {
+        "label": "Nav Link",
+        "link": "/"
+      },
+      {
+        "label": "Nav Link",
         "link": "/qwef"
       },
       {
         "label": "Nav Linkss",
-        "link": ""
+        "link": "wqfqwfwqf"
       },
       {
         "label": "Pricing",
