@@ -13,6 +13,10 @@
       {
         "label": "Nav Link",
         "link": "/"
+      },
+      {
+        "label": "Nav Link",
+        "link": "/"
       }
     ]
   },
