@@ -194,6 +194,9 @@
   },
   "items": [
     {
+      "_template": "TitleBlock"
+    },
+    {
       "background_color": "#4E2222",
       "label": "some label",
       "fsdfdsf": "wegwegweg",
