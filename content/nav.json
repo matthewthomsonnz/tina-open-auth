@@ -33,5 +33,8 @@
       "label": "Nav Link",
       "link": "kewl"
     }
-  ]
+  ],
+  "wordmark": {
+    "name": "no"
+  }
 }
