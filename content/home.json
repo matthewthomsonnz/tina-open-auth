@@ -194,17 +194,23 @@
   },
   "items": [
     {
-      "background_color": "#4E2222",
+      "_template": "GraphBlock",
       "label": "some label",
-      "fsdfdsf": "wegwegweg",
-      "backgroundColor": "#7ED321",
-      "textColorOverride": "#FFFFFF"
+      "backgroundColor": "#6B48B3",
+      "textColorOverride": "#3965E3"
     },
     {
-      "label": "ur mom",
-      "link": "cool",
-      "backgroundColor": "#C53535",
-      "fsdfdsf": "defrgthyj"
+      "_template": "GraphBlock",
+      "label": "lights",
+      "backgroundColor": "#780E0E",
+      "textColorOverride": "#CF96DA"
+    },
+    {
+      "_template": "InfoBlock",
+      "label": "test",
+      "backgroundColor": "#601D1D",
+      "textColorOverride": "#895454",
+      "fsdfdsf": "yes"
     }
   ],
   "aaa": [
