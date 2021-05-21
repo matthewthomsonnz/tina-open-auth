@@ -61,17 +61,25 @@ export class JsonCreatorPlugin<FormShape = any, FrontmatterShape = any>
   }
 
   async onSubmit(form: FormShape, cms: TinaCMS) {
+    console.log(this);
+    
     const fileRelativePath = await this.filename(form)
     const content = await this.data(form)
+    console.log('hullo');
+    console.log(fileRelativePath)
+    console.log(content)
+    
 
-    await cms.api.git!.onChange!({
-      fileRelativePath,
-      content: JSON.stringify(content, null, 2),
-    })
+cms.api.github.upload(fileRelativePath, "{}", "new file");
 
-    await cms.api.git.commit({
-      files: [fileRelativePath],
-      message: `Commit from Tina: Created ${fileRelativePath}`,
-    })
+    // await cms.api.github!.onChange!({
+    //   fileRelativePath,
+    //   content: JSON.stringify(content, null, 2),
+    // })
+
+    // await cms.api.github.commit({
+    //   files: [fileRelativePath],
+    //   message: `Commit from Tina: Created ${fileRelativePath}`,
+    // })
   }
 }

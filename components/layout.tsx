@@ -3,13 +3,32 @@ import {
     useGithubJsonForm,
     useGithubToolbarPlugins,
   } from 'react-tinacms-github'
-  import { usePlugin, useFormScreenPlugin } from 'tinacms'
+  import { usePlugin, useFormScreenPlugin ,withPlugin} from 'tinacms'
   import { GetStaticProps, GetStaticPaths } from 'next'
   import { Nav } from "../components/nav";
-
-function MyComponent({children}) {
-  console.log('yes');
+  import slugify from "react-slugify"
+import { JsonCreatorPlugin } from "./jsonButton"
   
+  const CreatePageButton = new JsonCreatorPlugin({
+    label: "New Page",
+    filename(form) {
+      let slug = slugify(form.title.toLowerCase())
+      return `content/${slug}.json`
+    },
+    fields: [
+      { name: "title", label: "Title", component: "text", required: true },
+      { name: "path", label: "Path", component: "text", required: true },
+    ],
+    data(form) {
+      return {
+        title: form.title,
+        path: form.path,
+      }
+    },
+  })    
+function MyComponent({children}) {
+
+  if (!children.props.nav) return children;
     const navFormOptions = {
         label: 'nav',
         fields: [...NAV_FIELDS],
@@ -33,5 +52,5 @@ function MyComponent({children}) {
     return <> <Nav data={navData} />{children}</> 
   }
 
-  export default MyComponent;
+  export default withPlugin(MyComponent, [ CreatePageButton]);
 

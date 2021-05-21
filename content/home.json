@@ -201,7 +201,7 @@
     },
     {
       "_template": "GraphBlock",
-      "label": "lights",
+      "label": "lightsw",
       "backgroundColor": "#780E0E",
       "textColorOverride": "#CF96DA"
     },

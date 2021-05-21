@@ -15,14 +15,13 @@ import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import MyComponent from '../components/layout'
 import './../styles/global.css'
 import './../styles/reset.css'
-import { JsonCreatorPlugin } from "../components/jsonButton"
 
 export default class Site extends App {
   cms: TinaCMS
 
   constructor(props) {
     super(props)
-console.log(JsonCreatorPlugin);
+
 
     const github = new GithubClient({
       proxy: '/api/proxy-github',

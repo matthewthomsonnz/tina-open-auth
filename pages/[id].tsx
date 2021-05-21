@@ -1,7 +1,5 @@
 import Head from 'next/head'
-/*
- ** Import helpers and GetStaticProps type
- */
+
 import { getGithubPreviewProps, parseJson, getGithubFile } from 'next-tinacms-github'
 import {
   useGithubJsonForm,
@@ -9,8 +7,11 @@ import {
 } from 'react-tinacms-github'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Nav } from "../components/nav";
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
+import GraphBlock from './../blocks/GraphBlock'
+import InfoBlock from './../blocks/InfoBlock'
+
+import { Graph } from '../components/Graph';
 
 export default function Home({ file, preview, nav }) {
  
@@ -53,9 +54,14 @@ export const getStaticProps: GetStaticProps = async function ({
       preview:true
     }};
   }
+console.log('start');
 
+  var data = (await import(`../content/${params.id}.json`))
+  console.log('below');
+  
+  console.log(data);
+  data = data.default
   // if (typeof window === 'undefined' &&)
-
   return {
     props: {
       sourceProvider: null,
@@ -63,7 +69,7 @@ export const getStaticProps: GetStaticProps = async function ({
       preview: false,
       file: {
         fileRelativePath: `content/${params.id}.json`,
-        data: (await import(`../content/${params.id}.json`)).default,
+        data: data,
       },
       nav: {
         fileRelativePath: 'content/nav.json',
