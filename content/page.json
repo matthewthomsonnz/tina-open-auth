@@ -1,7 +1,11 @@
 {
   "items": [
     {
-      "_template": "InfoBlock"
+      "_template": "InfoBlock",
+      "label": "ertyujki",
+      "fsdfdsf": "ertyhjukilo",
+      "backgroundColor": "#C91212",
+      "textColorOverride": "#6E0707"
     }
   ]
 }
