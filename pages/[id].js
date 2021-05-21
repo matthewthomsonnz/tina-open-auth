@@ -94,8 +94,7 @@ export default function Home({ file, preview, nav }) {
     </div>
   )
 }
-
-export const getStaticProps: GetStaticProps = async function ({
+export async function getStaticProps({
   preview,
   previewData,
   params
@@ -142,8 +141,10 @@ console.log('start');
     },
   }
 }
-export const getStaticPaths: GetStaticPaths = async function () {
-  var nav = (await import('../content/nav.json')).default
+
+
+  export async function getStaticPaths() {
+    var nav = (await import('../content/nav.json')).default
   var paths =nav.items.map((item)=>{
 
     return {params: {id: item.link}}
@@ -155,3 +156,4 @@ export const getStaticPaths: GetStaticPaths = async function () {
     fallback: false // See the "fallback" section below
   };
   }
+  
