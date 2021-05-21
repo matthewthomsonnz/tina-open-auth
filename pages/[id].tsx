@@ -14,7 +14,36 @@ import InfoBlock from './../blocks/InfoBlock'
 import { Graph } from '../components/Graph';
 
 export default function Home({ file, preview, nav }) {
- 
+  const formOptions = {
+    label: 'Home Page',
+    fields: [
+      {
+        name: "items",
+        label: "Repeater Items",
+        component: "blocks",
+        // itemProps: (item) => ({
+        //   label: item.label,
+        // }),
+        onSubmit: async () => {
+          console.log('fff');
+          
+        },
+        templates: {
+          InfoBlock,
+          GraphBlock
+        },
+
+      },
+    ],
+    onSubmit: (values) => {
+      alert(`Submitting ${values.title}`)
+    }
+  }
+  
+  const [data, form] = useGithubJsonForm(file, formOptions)
+  usePlugin(form)
+
+  useGithubToolbarPlugins()
   return (
     <div className="container">
       <Head>
@@ -22,10 +51,45 @@ export default function Home({ file, preview, nav }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="title">
-          {'title'}
+      <h1 className="title">
+          {data.title}
         </h1>
+        {data.items.map(function (item, index) {
+          switch (item._template) {
+            case "InfoBlock":
+              return (
+                <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
+                  <div className="container">
+                  {item.label}
+                {item.link}
+                </div>
+              </div>
+              );
+              break;
+              case "GraphBlock":
+                return (
+                  <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
+                  <div className="container">
 
+                  <Graph 
+                  title='Probability'
+                  graphStyle='line'
+                  colorA='rgba(188, 225, 98, 1)'
+                  datasetA={[40, 20, 50, 45, 10, 10, 20]}
+                  colorB='rgba(195, 138, 255, 1)'
+                  datasetB={[70, 65, 60, 55, 50, 45, 40]}
+                  xAxisLabel='(in minutes)'
+                  datasetBLabel='Confidence level'
+                /></div>
+                </div>
+                );
+                break;
+            default:
+              break;
+          }
+          
+
+              })}
       </main>
     </div>
   )
@@ -40,7 +104,7 @@ export const getStaticProps: GetStaticProps = async function ({
   if (preview) {
     const homeFile = await getGithubFile({
       ...previewData,
-      fileRelativePath: "content/home.json",
+      fileRelativePath: `content/${params.id}.json`,
       parse: parseJson
     });
     const nav = await getGithubFile({

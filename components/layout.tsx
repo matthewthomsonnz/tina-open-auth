@@ -16,8 +16,8 @@ import { JsonCreatorPlugin } from "./jsonButton"
       return `content/${slug}.json`
     },
     fields: [
-      { name: "title", label: "Title", component: "text", required: true },
-      { name: "path", label: "Path", component: "text", required: true },
+      { name: "title", label: "Title", component: "text" },
+      { name: "path", label: "Path", component: "text" },
     ],
     data(form) {
       return {
