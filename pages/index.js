@@ -139,16 +139,3 @@ export async function getStaticProps({
     },
   }
 }
-
-export async function getStaticPaths() {
-
-
-  var test = (await import('../content/nav.json')).default;
-var paths =test.items.map((item)=>{
-  return {params: {id: item.link}}
-})
-    return {
-      paths,
-      fallback: true
-    };
-  }
