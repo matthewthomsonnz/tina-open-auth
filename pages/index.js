@@ -58,7 +58,7 @@ export default function Home({ file, preview, nav }) {
         <h1 className="title">
           {data.title}
         </h1>
-        {data.items.map(function (item, index) {
+        {data.items && data.items.map(function (item, index) {
           switch (item._template) {
             case "InfoBlock":
               return (
