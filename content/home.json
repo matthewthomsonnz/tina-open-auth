@@ -194,7 +194,10 @@
   },
   "items": [
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "xAxisLabel": "dfghyergt",
+      "datasetBLabel": "egrehrehhreh",
+      "label": "sdfghj"
     },
     {
       "_template": "GraphBlock",
