@@ -1,7 +1,8 @@
 {
   "items": [
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "label": "some label"
     }
   ]
 }
