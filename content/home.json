@@ -194,6 +194,9 @@
   },
   "items": [
     {
+      "_template": "GraphBlock"
+    },
+    {
       "_template": "GraphBlock",
       "label": "some label",
       "backgroundColor": "#6B48B3",
@@ -202,7 +205,7 @@
     {
       "_template": "GraphBlock",
       "label": "lightsw",
-      "backgroundColor": "#780E0E",
+      "backgroundColor": "#DA8B8B",
       "textColorOverride": "#CF96DA"
     },
     {
