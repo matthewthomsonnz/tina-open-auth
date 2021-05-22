@@ -100,10 +100,12 @@ export default function Home({ file, preview, nav }) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async function ({
+export async function getStaticProps({
   preview,
   previewData,
+  params
 }) {
+  
   if (preview) {
     const homeFile = await getGithubFile({
       ...previewData,
@@ -138,7 +140,7 @@ export const getStaticProps: GetStaticProps = async function ({
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async function () {
+export async function getStaticPaths() {
 
 
   var test = (await import('../content/nav.json')).default;
