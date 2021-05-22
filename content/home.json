@@ -195,8 +195,8 @@
   "items": [
     {
       "_template": "GraphBlock",
-      "xAxisLabel": "dfghyergt",
-      "datasetBLabel": "egrehrehhreh",
+      "xAxisLabel": "X label",
+      "datasetBLabel": "Bottom label",
       "label": "sdfghj",
       "key": "smoothed_ssn"
     },
