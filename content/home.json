@@ -198,7 +198,9 @@
       "xAxisLabel": "X label",
       "datasetBLabel": "Bottom label",
       "label": "sdfghj",
-      "key": "smoothed_ssn"
+      "key": "smoothed_ssn",
+      "datasetA": "40, 20, 50, 45, 10, 10, 20",
+      "datasetB": "70, 65, 60, 55, 50, 45, 40"
     },
     {
       "_template": "GraphBlock",
