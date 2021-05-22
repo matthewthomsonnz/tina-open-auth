@@ -240,5 +240,10 @@
         "_template": "title-block"
       }
     ]
-  }
+  },
+  "apis": [
+    {
+      "url": "https://services.swpc.noaa.gov/json/enlil_time_series.json"
+    }
+  ]
 }
