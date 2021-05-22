@@ -197,7 +197,8 @@
       "_template": "GraphBlock",
       "xAxisLabel": "dfghyergt",
       "datasetBLabel": "egrehrehhreh",
-      "label": "sdfghj"
+      "label": "sdfghj",
+      "key": "smoothed_ssn"
     },
     {
       "_template": "GraphBlock",
