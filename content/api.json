@@ -19,5 +19,13 @@
         "link": "/dfrgthyju"
       }
     ]
+  },
+  "api": {
+    "items": [
+      {
+        "label": "Endpoint",
+        "link": "https://services.swpc.noaa.gov/json/sunspot_report.json"
+      }
+    ]
   }
 }
