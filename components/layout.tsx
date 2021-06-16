@@ -47,7 +47,6 @@ function MyComponent({children}) {
       alert('Saving...')
     },
   }
-  console.log(children.props);
   
   if (!children.props.api) return children;
   
@@ -60,6 +59,7 @@ function MyComponent({children}) {
 
       
       useFormScreenPlugin(navForm)
+      useFormScreenPlugin(apiForm)
 
   
      
