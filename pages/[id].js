@@ -111,16 +111,21 @@ export async function getStaticProps({
       fileRelativePath: "content/nav.json",
       parse: parseJson
     })
+    const api = await getGithubFile({
+      ...previewData,
+      fileRelativePath: "content/api.json",
+      parse: parseJson
+    })
     return {props: {
       file: homeFile,
       nav,
+      api,
       preview:true
     }};
   }
 console.log('start');
 
   var data = (await import(`../content/${params.id}.json`))
-  console.log('below');
   
   console.log(data);
   data = data.default
@@ -137,6 +142,10 @@ console.log('start');
       nav: {
         fileRelativePath: 'content/nav.json',
         data: (await import('../content/nav.json')).default,
+      },
+      api: {
+        fileRelativePath: 'content/api.json',
+        data: (await import('../content/api.json')).default,
       },
     },
   }

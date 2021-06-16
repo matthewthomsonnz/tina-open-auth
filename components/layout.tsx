@@ -1,4 +1,5 @@
 import {NAV_FIELDS } from '../blocks/NAV_FIELDS'
+import {API_FIELDS } from '../blocks/API_FIELDS'
 import {
     useGithubJsonForm,
     useGithubToolbarPlugins,
@@ -29,15 +30,28 @@ import { JsonCreatorPlugin } from "./jsonButton"
 function MyComponent({children}) {
 
   if (!children.props.nav) return children;
-    const navFormOptions = {
-        label: 'nav',
-        fields: [...NAV_FIELDS],
-        onSubmit: () => {
-          alert('Saving...')
-        },
-      }
-      
-      const [navData, navForm] = useGithubJsonForm(children.props.nav, navFormOptions)
+  const navFormOptions = {
+    label: 'nav',
+    fields: [...NAV_FIELDS],
+    onSubmit: () => {
+      alert('Saving...')
+    },
+  }
+  
+  const [navData, navForm] = useGithubJsonForm(children.props.nav, navFormOptions)
+
+  const apiFormOptions = {
+    label: 'api',
+    fields: [...API_FIELDS],
+    onSubmit: () => {
+      alert('Saving...')
+    },
+  }
+  console.log(children.props);
+  
+  if (!children.props.api) return children;
+  
+  const [apiData, apiForm] = useGithubJsonForm(children.props.api, apiFormOptions)
 
 // console.log(navForm);
 // console.log(navForm.submit);
