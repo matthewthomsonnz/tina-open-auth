@@ -23,7 +23,7 @@
   "api": {
     "items": [
       {
-        "label": "Endpoint",
+        "label": "Sunspots",
         "link": "https://services.swpc.noaa.gov/json/sunspot_report.json"
       }
     ]
