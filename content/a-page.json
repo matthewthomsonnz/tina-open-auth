@@ -1,1 +1,13 @@
-{}
+{
+  "items": [
+    {
+      "_template": "GraphBlock"
+    },
+    {
+      "_template": "GraphBlock"
+    },
+    {
+      "_template": "GraphBlock"
+    }
+  ]
+}
