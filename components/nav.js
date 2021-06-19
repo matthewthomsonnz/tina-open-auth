@@ -3,9 +3,18 @@ import { InlineText, InlineGroup } from "react-tinacms-inline";
 import Link from 'next/link'
 
 export const Nav = ({ data }) => {
+  console.log(data.fixed);
   return (
 
         <div className="relative flex flex-col flex-wrap py-8 px-8 lg:px-12 2xl:px-16 mx-auto md:items-center md:flex-row">
+               <style  jsx>{`
+ nav{
+   position: ${data.fixed ? 'fixed' : 'static'};
+   ${data.top ? 'top: '+data.top+';' : ''}
+   ${data.left ? 'top: '+data.left+';' : ''}
+   ${data.top && data.top.contains('%') || data.left && data.left.contains('%')  ? `transform: translate(-${data.left}, -${data.top});`:''
+ }
+        `}</style>
           <div className="flex-grow md:flex md:justify-end">
 {/* <Link href="/">home</Link> */}
 

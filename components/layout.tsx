@@ -26,6 +26,8 @@ import {
     },
   })    
 function MyComponent({children}) {
+
+  
   if (!children.props.theme) return children; // future me:  this is for a cryptic error you may encounter
 
   const navFormOptions = { label: 'nav', fields: [...NAV_FIELDS], onSubmit: () => { alert('Saving...') }  }
@@ -33,6 +35,7 @@ function MyComponent({children}) {
   const themeFormOptions = { label: 'theme',       fields: [
     { name: "background", label: "Background color", component: "color"},
     { name: "text", label: "Text color", component: "color"},
+    { name: "containerWidth", label: "Container Width", component: "number"},
   ],  onSubmit: () => { alert('Saving...')}  }
   
   const [navData, navForm] = useGithubJsonForm(children.props.nav, navFormOptions)
@@ -42,8 +45,20 @@ function MyComponent({children}) {
       useFormScreenPlugin(navForm)
       useFormScreenPlugin(apiForm)
       useFormScreenPlugin(themeForm)
+      console.log(themeData.containerWidth);
      
-    return <> <Nav data={navData} />{children}</> 
+    return <div id="app">
+      
+      <style global jsx>{`
+          #app {
+            background-color: ${themeData.background};
+            color: ${themeData.text};
+          }
+          .container {
+            max-width: ${themeData.containerWidth}px;
+          }
+        `}</style>
+      <Nav data={navData} />{children}</div> 
   }
 
   export default withPlugin(MyComponent, [ CreatePageButton]);

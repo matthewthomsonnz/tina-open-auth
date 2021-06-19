@@ -12,6 +12,21 @@ export const NAV_FIELDS = [
       ],
     },
     {
+      label: "fixed",
+      name: "fixed",
+      component: "toggle",
+    },
+    {
+      label: "top",
+      name: "top",
+      component: "text",
+    },
+    {
+      label: "left",
+      name: "left",
+      component: "text",
+    },
+    {
       label: "Nav Items",
       name: "nav.items",
       component: "group-list",
@@ -39,4 +54,3 @@ export const NAV_FIELDS = [
       ],
     },
   ];
-  

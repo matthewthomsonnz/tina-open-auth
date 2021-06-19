@@ -2,10 +2,18 @@ body {
     font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
       'Arial', sans-serif;
     margin: 0 auto;
+
   }
 h2{
     margin: 0;
 }
   .container {
-    max-width: 680px;
+    margin: 0 auto;
+}
+
+#app {
+  height: 100%;
+}
+html, body, #app, #__next, div[class^="SiteWrapper"]  {
+  height: 100%;
 }

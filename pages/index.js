@@ -83,8 +83,14 @@ return item.k
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-     
+        <style global jsx>{`
+          div {
+            background-color: 'blue'}
+          }
+        `}</style>
+
       <main>
+
         <h1 className="title">
           {data.title}
         </h1>
