@@ -23,5 +23,8 @@
         "link": "/another-page"
       }
     ]
-  }
+  },
+  "top": "50%",
+  "fixed": true,
+  "left": "50%"
 }
