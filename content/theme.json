@@ -23,5 +23,8 @@
         "link": "/another-page"
       }
     ]
-  }
+  },
+  "background": "#0F1C32",
+  "text": "#FFFFFF",
+  "containerWidth": 779
 }
