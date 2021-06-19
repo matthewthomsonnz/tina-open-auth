@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "label": "Nav Link",
+      "link": "contact-2"
+    },
+    {
+      "label": "Nav Link",
+      "link": "page"
+    }
+  ],
+  "wordmark": {
+    "name": "noddrw"
+  },
+  "nav": {
+    "items": [
+      {
+        "label": "a page",
+        "link": "a-page"
+      },
+      {
+        "label": "some page",
+        "link": "/another-page"
+      }
+    ]
+  }
+}

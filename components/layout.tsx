@@ -26,6 +26,7 @@ import {
     },
   })    
 function MyComponent({children}) {
+  if (!children.props.theme) return children; // future me:  this is for a cryptic error you may encounter
 
   const navFormOptions = { label: 'nav', fields: [...NAV_FIELDS], onSubmit: () => { alert('Saving...') }  }
   const apiFormOptions = { label: 'api', fields: [...API_FIELDS],   onSubmit: () => { alert('Saving...')}  }

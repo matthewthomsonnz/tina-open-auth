@@ -122,7 +122,7 @@ export async function getStaticProps({
       parse: parseJson
     })
     return {
-      props: { file: homeFile, nav, api, theme, preview:true }
+      props: { file: homeFile, nav, theme, api, preview:true }
     };
   }
 
