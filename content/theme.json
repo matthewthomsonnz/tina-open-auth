@@ -24,5 +24,6 @@
       }
     ]
   },
-  "background": "#0F1C32"
+  "background": "#0F1C32",
+  "text": "#FFFFFF"
 }
