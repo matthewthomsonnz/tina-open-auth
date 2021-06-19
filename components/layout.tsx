@@ -39,7 +39,10 @@ function MyComponent({children}) {
   }
   
   const [navData, navForm] = useGithubJsonForm(children.props.nav, navFormOptions)
-
+  console.log(navData);
+  
+  // console.log(navData);
+  
   const apiFormOptions = {
     label: 'api',
     fields: [...API_FIELDS],

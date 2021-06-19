@@ -1,14 +1,4 @@
 {
-  "items": [
-    {
-      "label": "Nav Link",
-      "link": "contact-2"
-    },
-    {
-      "label": "Nav Link",
-      "link": "page"
-    }
-  ],
   "wordmark": {
     "name": "noddrw"
   },
