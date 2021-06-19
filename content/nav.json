@@ -16,6 +16,10 @@
     "items": [
       {
         "label": "Nav Link",
+        "link": "cfwertyui"
+      },
+      {
+        "label": "Nav Link",
         "link": "/dfrgthyju"
       }
     ]
