@@ -25,5 +25,6 @@
     ]
   },
   "background": "#0F1C32",
-  "text": "#FFFFFF"
+  "text": "#FFFFFF",
+  "containerWidth": 680
 }
