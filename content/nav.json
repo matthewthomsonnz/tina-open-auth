@@ -15,12 +15,8 @@
   "nav": {
     "items": [
       {
-        "label": "Some link",
-        "link": "cfwertyui"
-      },
-      {
-        "label": "Another page",
-        "link": "ewgewhwhwhh"
+        "label": "some page",
+        "link": "/some-page"
       }
     ]
   }
