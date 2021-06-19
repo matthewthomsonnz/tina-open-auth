@@ -30,7 +30,10 @@ function MyComponent({children}) {
 
   const navFormOptions = { label: 'nav', fields: [...NAV_FIELDS], onSubmit: () => { alert('Saving...') }  }
   const apiFormOptions = { label: 'api', fields: [...API_FIELDS],   onSubmit: () => { alert('Saving...')}  }
-  const themeFormOptions = { label: 'theme', fields: [...THEME_FIELDS],   onSubmit: () => { alert('Saving...')}  }
+  const themeFormOptions = { label: 'theme',       fields: [
+    { name: "background", label: "Background color", component: "color"},
+    { name: "text", label: "Text color", component: "color"},
+  ],  onSubmit: () => { alert('Saving...')}  }
   
   const [navData, navForm] = useGithubJsonForm(children.props.nav, navFormOptions)
   const [apiData, apiForm] = useGithubJsonForm(children.props.api, apiFormOptions)
