@@ -60,11 +60,11 @@ export class Graph extends React.Component {
             ticks:{
               fontColor: "#c2c2c2",
               fontSize: 14,
-              max: 100,
+              max: 1,
               min: 0,
-              stepSize:25,
+              stepSize:0.1,
               callback: function(value, index, values) {
-                return isNaN(value ) ? value : value + '%';
+                return isNaN(value ) ? value : value;
               }
             }
           }],

@@ -10,10 +10,41 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { InlineForm, InlineGroup } from "react-tinacms-inline";
 import GraphBlock from './../blocks/GraphBlock'
 import InfoBlock from './../blocks/InfoBlock'
+import { useState, useEffect } from 'react'
 
 import { Graph } from '../components/Graph';
 
-export default function Home({ file, preview, nav }) {
+export default function Home({ file, preview, nav, api }) {
+
+  var apis = api.data.api.items.map((item)=>{
+return fetch(item.link).then((res)=>res.json())
+  })
+
+
+  var apiData = Promise.all(apis);
+var test = []
+  const [apiInfo, setapiInfo] = useState(test);
+
+  useEffect(() => {
+      apiData.then((data)=>{
+
+        console.log(data[1]);
+  test = data[0].map((item)=>{
+return item.k
+  })
+  console.log(test);
+  setapiInfo(test); 
+  })
+// sets ariaInfo state
+  } 
+  , []);
+
+//   apiData.then((data)=>{
+//   test = data[0].map((item)=>{
+// return item.k
+//   })
+//   })
+
   const formOptions = {
     label: 'Home Page',
     fields: [
@@ -79,9 +110,9 @@ export default function Home({ file, preview, nav }) {
                   title='Probability'
                   graphStyle='line'
                   colorA='rgba(188, 225, 98, 1)'
-                  datasetA={[40, 20, 50, 45, 10, 10, 20]}
+                  datasetA={apiInfo}
                   colorB='rgba(195, 138, 255, 1)'
-                  datasetB={[70, 65, 60, 55, 50, 45, 40]}
+                  datasetB={apiInfo}
                   xAxisLabel='(in minutes)'
                   datasetBLabel='Confidence level'
                 /></div>
