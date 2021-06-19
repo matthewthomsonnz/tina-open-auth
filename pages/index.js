@@ -7,7 +7,6 @@ import {
 } from 'react-tinacms-github'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { InlineForm, InlineGroup } from "react-tinacms-inline";
 import GraphBlock from './../blocks/GraphBlock'
 import InfoBlock from './../blocks/InfoBlock'
 import { useState, useEffect } from 'react'
@@ -153,12 +152,14 @@ export async function getStaticProps({
       fileRelativePath: "content/api.json",
       parse: parseJson
     })
-    return {props: {
-      file: homeFile,
-      nav,
-      api,
-      preview:true
-    }};
+    const theme = await getGithubFile({
+      ...previewData,
+      fileRelativePath: "content/theme.json",
+      parse: parseJson
+    })
+    return {
+      props: { file: homeFile, nav, api, theme, preview:true }
+    };
   }
   return {
     props: {
@@ -176,6 +177,10 @@ export async function getStaticProps({
       api: {
         fileRelativePath: 'content/api.json',
         data: (await import('../content/api.json')).default,
+      },
+      theme: {
+        fileRelativePath: 'content/theme.json',
+        data: (await import('../content/theme.json')).default,
       },
     },
   }

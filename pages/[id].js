@@ -116,14 +116,15 @@ export async function getStaticProps({
       fileRelativePath: "content/api.json",
       parse: parseJson
     })
-    return {props: {
-      file: homeFile,
-      nav,
-      api,
-      preview:true
-    }};
+    const theme = await getGithubFile({
+      ...previewData,
+      fileRelativePath: "content/theme.json",
+      parse: parseJson
+    })
+    return {
+      props: { file: homeFile, nav, api, theme, preview:true }
+    };
   }
-console.log('start');
 
   var data = (await import(`../content/${params.id}.json`))
   
@@ -146,6 +147,10 @@ console.log('start');
       api: {
         fileRelativePath: 'content/api.json',
         data: (await import('../content/api.json')).default,
+      },
+      theme: {
+        fileRelativePath: 'content/theme.json',
+        data: (await import('../content/theme.json')).default,
       },
     },
   }
