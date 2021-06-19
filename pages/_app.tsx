@@ -39,20 +39,7 @@ export default class Site extends App {
       sidebar: props.pageProps.preview,
       toolbar: props.pageProps.preview,
     })
-    // this.cms.events.subscribe('github:commit', async event => {
-    //   if(event.response.content.name == "nav.json") {
-    //     var nav = ((await import('../content/nav.json')).default);
-    //     nav.items.forEach(async (item)=>{ 
-    //       console.log(item);
-    //       try {
-    //         (await import(`../content/${item.link}.json`));
-    //       } catch (exception_var) {
-    //         console.log(exception_var);
-    //       }
-    //     })
-        
-    //   }
-    // })
+
   }
 
   render() {

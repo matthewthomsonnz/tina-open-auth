@@ -154,7 +154,7 @@ console.log('start');
 
   export async function getStaticPaths() {
     var nav = (await import('../content/nav.json')).default
-  var paths =nav.items.map((item)=>{
+  var paths =nav.nav.items.map((item)=>{
 
     return {params: {id: item.link}}
   })

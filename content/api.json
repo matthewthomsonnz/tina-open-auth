@@ -1,4 +1,15 @@
 {
+  "wordmark": {
+    "name": "noddrw"
+  },
+  "nav": {
+    "items": [
+      {
+        "label": "Nav Link",
+        "link": "/dfrgthyju"
+      }
+    ]
+  },
   "api": {
     "items": [
       {
@@ -6,8 +17,8 @@
         "link": "https://services.swpc.noaa.gov/json/geospace/geospce_pred_est_kp_7_day.json"
       },
       {
-        "label": "Sunspots",
-        "link": "https://services.swpc.noaa.gov/json/sunspot_report.json"
+        "label": "Solar probabilities",
+        "link": "https://services.swpc.noaa.gov/json/solar_probabilities.json"
       }
     ]
   }
