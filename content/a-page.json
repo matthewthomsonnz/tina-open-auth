@@ -14,7 +14,11 @@
     },
     {
       "_template": "GraphBlock",
-      "limit": 5
+      "limit": 5,
+      "label": "planetary_k_index_1m",
+      "xAxis": "time_tag",
+      "yAxis": "kp_index",
+      "api": 5
     }
   ]
 }
