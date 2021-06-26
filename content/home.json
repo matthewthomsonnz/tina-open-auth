@@ -207,7 +207,8 @@
       "yAxis data pointer": "m_class_1_day",
       "xAxis": "model_prediction_time",
       "yAxis": "k",
-      "label": "K index"
+      "label": "K index",
+      "limit": 30
     }
   ],
   "aaa": [
