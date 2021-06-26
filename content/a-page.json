@@ -1,16 +1,20 @@
 {
   "items": [
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "limit": 2
     },
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "limit": 3
     },
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "limit": 4
     },
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "limit": 5
     }
   ]
 }
