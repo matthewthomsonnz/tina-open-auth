@@ -13,7 +13,8 @@
       "limit": 22,
       "api": 3,
       "xAxis": "time_tag",
-      "yAxis": "k_index"
+      "yAxis": "k_index",
+      "label": "boulder_k_index_1m"
     },
     {
       "_template": "GraphBlock",
