@@ -31,6 +31,10 @@
       {
         "label": "solar_probabilities",
         "link": "https://services.swpc.noaa.gov/json/solar_probabilities.json"
+      },
+      {
+        "label": "geospace_dst_7_day",
+        "link": "https://services.swpc.noaa.gov/json/geospace/geospace_dst_7_day.json"
       }
     ]
   }
