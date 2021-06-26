@@ -199,7 +199,7 @@
       "xAxis": "date",
       "yAxis": "c_class_1_day",
       "label": "some label",
-      "limit": 30
+      "limit": 10
     },
     {
       "_template": "GraphBlock",
