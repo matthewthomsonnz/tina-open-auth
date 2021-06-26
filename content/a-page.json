@@ -10,9 +10,9 @@
     },
     {
       "_template": "GraphBlock",
-      "limit": 22,
+      "limit": 7,
       "api": 3,
-      "xAxis": "time_tag",
+      "xAxis": "",
       "yAxis": "k_index",
       "label": "boulder_k_index_1m"
     },
