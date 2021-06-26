@@ -27,5 +27,6 @@
   "top": "100% - 50px",
   "left": "50%",
   "fixed": true,
-  "backgroundColor": "#FFFFFF"
+  "backgroundColor": "#FFFFFF",
+  "textColor": "#000000"
 }
