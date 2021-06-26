@@ -15,9 +15,9 @@
     {
       "_template": "GraphBlock",
       "limit": 5,
-      "label": "planetary_k_index_1m",
+      "label": "geospace_dst_7_day",
       "xAxis": "time_tag",
-      "yAxis": "kp_index",
+      "yAxis": "dst",
       "api": 5
     }
   ]
