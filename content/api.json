@@ -13,19 +13,23 @@
   "api": {
     "items": [
       {
-        "label": "boulder_k_index",
-        "link": "https://services.swpc.noaa.gov/json/boulder_k_index_1m.json"
+        "label": "kp index 7 day",
+        "link": "https://services.swpc.noaa.gov/json/geospace/geospce_pred_est_kp_7_day.json"
+      },
+      {
+        "label": "Solar probabilities",
+        "link": "https://services.swpc.noaa.gov/json/solar_probabilities.json"
       },
       {
         "label": "planetary_k_index",
         "link": "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json"
       },
       {
-        "label": "kp index 7 day",
-        "link": "https://services.swpc.noaa.gov/json/geospace/geospce_pred_est_kp_7_day.json"
+        "label": "boulder_k_index",
+        "link": "https://services.swpc.noaa.gov/json/boulder_k_index_1m.json"
       },
       {
-        "label": "Solar probabilities",
+        "label": "solar_probabilities",
         "link": "https://services.swpc.noaa.gov/json/solar_probabilities.json"
       }
     ]
