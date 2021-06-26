@@ -195,7 +195,7 @@
   "items": [
     {
       "_template": "GraphBlock",
-      "api": 0,
+      "api": 1,
       "xAxis": "date",
       "yAxis": "c_class_1_day",
       "label": "some label"
