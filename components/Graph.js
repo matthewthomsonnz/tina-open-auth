@@ -2,7 +2,58 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import './graph.css';
 import InfoModal from './InfoModal';
-import Chart from 'chart.js';
+import {
+  Chart,
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip
+} from 'chart.js';
+
+Chart.register(
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip
+);
 /**
  * Primary UI component for user interaction
  */
@@ -23,6 +74,7 @@ export class Graph extends React.Component {
     this.setState({showInfo: this.state.showInfo ? false : true})
   }
   componentDidUpdate(){
+    this.myChart.destroy();
    this.renderGraph();
   }
   renderGraph(){
@@ -84,15 +136,16 @@ export class Graph extends React.Component {
           
         }
       },
+      type: this.props.graphStyle,
+
       data: {
         datasets: [{
-            type: this.props.graphStyle,
             data: this.props.datasetA,
             backgroundColor: this.props.colorA,
-            order: 3,
+            order: 1,
             scaleOverride:true,
-            scaleSteps:20,
-            scaleStartValue:30,
+            scaleSteps:1,
+            scaleStartValue:1,
             scaleStepWidth:1,
             label: undefined,
             pointRadius:0
@@ -128,7 +181,7 @@ export class Graph extends React.Component {
 
 
 Graph.propTypes = {
-  graphStyle: PropTypes.oneOf(['line', 'bar']),
+  graphStyle: PropTypes.oneOf([ 'bar']),
   colorA:PropTypes.string,
   colorB:PropTypes.string,
   xAxisLabel:PropTypes.string,

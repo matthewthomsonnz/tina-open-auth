@@ -27,22 +27,14 @@ var test = []
   useEffect(() => {
       apiData.then((data)=>{
 
-        console.log(data[1]);
   test = data[0].map((item)=>{
-return item.k
-  })
-  console.log(test);
+    console.log(item);
+    return {x: item.model_prediction_time, y:item.k}
+      })
   setapiInfo(test); 
   })
-// sets ariaInfo state
   } 
   , []);
-
-//   apiData.then((data)=>{
-//   test = data[0].map((item)=>{
-// return item.k
-//   })
-//   })
 
   const formOptions = {
     label: 'Home Page',
@@ -113,7 +105,7 @@ return item.k
 
                   <Graph 
                   title='Probability'
-                  graphStyle='line'
+                  graphStyle='bar'
                   colorA='rgba(188, 225, 98, 1)'
                   datasetA={apiInfo}
                   colorB='rgba(195, 138, 255, 1)'

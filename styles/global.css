@@ -1,7 +1,6 @@
 body {
     font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
       'Arial', sans-serif;
-    margin: 0 auto;
 
   }
 h2{
@@ -13,7 +12,13 @@ h2{
 
 #app {
   height: 100%;
+  position: relative;
 }
-html, body, #app, #__next, div[class^="SiteWrapper"]  {
+body, #app, #__next, div[class^="SiteWrapper"]  {
   height: 100%;
+  margin: 0; padding: 0;
+}
+
+html {
+  min-height: 100%;
 }

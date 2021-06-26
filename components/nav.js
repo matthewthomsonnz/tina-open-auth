@@ -11,8 +11,8 @@ export const Nav = ({ data }) => {
  nav{
    position: ${data.fixed ? 'fixed' : 'static'};
    ${data.top ? 'top: '+data.top+';' : ''}
-   ${data.left ? 'top: '+data.left+';' : ''}
-   ${data.top && data.top.contains('%') || data.left && data.left.contains('%')  ? `transform: translate(-${data.left}, -${data.top});`:''
+   ${data.left ? 'left: '+data.left+';' : ''}
+   ${data.top && data.top.includes('%') || data.left  && data.left.includes('%')  ? `transform: translate(-${data.left}, -${data.top});`:''
  }
         `}</style>
           <div className="flex-grow md:flex md:justify-end">
