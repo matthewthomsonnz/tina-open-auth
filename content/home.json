@@ -198,7 +198,8 @@
       "api": 1,
       "xAxis": "date",
       "yAxis": "c_class_1_day",
-      "label": "some label"
+      "label": "some label",
+      "limit": 30
     },
     {
       "_template": "GraphBlock",
