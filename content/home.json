@@ -194,13 +194,16 @@
   },
   "items": [
     {
+      "_template": "GraphBlock"
+    },
+    {
       "_template": "GraphBlock",
-      "api": 1,
+      "api": 0,
       "xAxis data pointer": "date",
       "yAxis data pointer": "m_class_1_day",
-      "xAxis": "date",
-      "yAxis": "c_class_1_day",
-      "label": "C class 1 day"
+      "xAxis": "model_prediction_time",
+      "yAxis": "k",
+      "label": "Model"
     }
   ],
   "aaa": [
