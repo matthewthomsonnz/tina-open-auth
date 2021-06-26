@@ -92,6 +92,8 @@ export async function getStaticProps({
       fileRelativePath: `content/${params.id}.json`,
       parse: parseJson
     });
+
+
     const nav = await getGithubFile({
       ...previewData,
       fileRelativePath: "content/nav.json",
@@ -146,7 +148,7 @@ export async function getStaticProps({
   export async function getStaticPaths() {
     var nav = (await import('../content/nav.json')).default
   var paths =nav.nav.items.map((item)=>{
-
+    console.log(item);
     return {params: {id: item.link}}
   })
 

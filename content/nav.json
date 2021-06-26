@@ -20,7 +20,7 @@
       },
       {
         "label": "some page",
-        "link": "/another-page"
+        "link": "another-page"
       }
     ]
   },
