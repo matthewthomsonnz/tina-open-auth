@@ -195,7 +195,9 @@
   "items": [
     {
       "_template": "GraphBlock",
-      "api": 1
+      "api": 1,
+      "xAxis data pointer": "date",
+      "yAxis data pointer": "m_class_1_day"
     }
   ],
   "aaa": [
