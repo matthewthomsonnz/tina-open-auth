@@ -73,6 +73,13 @@ export class Graph extends React.Component {
     this.renderGraph();
   }
   renderGraph(){
+    var graphFormat = this.props.datasetA && this.props.datasetA.slice(0, this.props.limit).map((item)=>{
+      console.log(item);
+ 
+      return {x: item[this.props.xAxis], y:item[this.props.yAxis]}
+    })
+
+
     var chartData = {
       options: {
         legend: {
@@ -118,7 +125,7 @@ export class Graph extends React.Component {
 
       data: {
         datasets: [{
-            data: this.props.datasetA,
+            data: graphFormat,
             backgroundColor: this.props.colorA,
             order: 1,
             scaleOverride:true,

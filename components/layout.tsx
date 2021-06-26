@@ -45,18 +45,21 @@ function MyComponent({children}) {
       useFormScreenPlugin(navForm)
       useFormScreenPlugin(apiForm)
       useFormScreenPlugin(themeForm)
-      console.log(themeData.containerWidth);
      
     return <div id="app">
       
       <style global jsx>{`
+      html {
+
+        background-color: ${themeData.background};
+      }
           #app {
-            background-color: ${themeData.background};
             color: ${themeData.text};
           }
           .container {
             max-width: ${themeData.containerWidth}px;
           }
+
         `}</style>
       <Nav data={navData} />{children}</div> 
   }

@@ -20,12 +20,13 @@ export default function Home({ file, preview, nav, api }) {
   });
 
   var apiData = Promise.all(apis);
+
   var test = [];
   const [apiInfo, setapiInfo] = useState(test);
 
   useEffect(() => {
     apiData.then((data)=>{
-      test = data[0].map((item)=>{ return {x: item.model_prediction_time, y:item.k}})
+      test = data;
       setapiInfo(test);
     })},[]);
 
@@ -55,7 +56,6 @@ export default function Home({ file, preview, nav, api }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="title">{data.title}</h1>
         {data.items && data.items.map(function (item, index) {
           switch (item._template) {
             case "InfoBlock":
@@ -71,7 +71,7 @@ export default function Home({ file, preview, nav, api }) {
                 return (
                   <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
                   <div className="container">
-                    <Graph title='Probability' graphStyle='bar' colorA='rgba(188, 225, 98, 1)' datasetA={apiInfo} colorB='rgba(195, 138, 255, 1)' datasetB={apiInfo} xAxisLabel='(in minutes)' datasetBLabel='Confidence level' />
+                    <Graph title={item.label} xAxis={item.xAxis} limit={item.limit} yAxis={item.yAxis} graphStyle='bar' colorA='rgba(188, 225, 98, 1)' datasetA={apiInfo[item.api]} colorB='rgba(195, 138, 255, 1)' datasetB={apiInfo[item.api]} xAxisLabel='(in minutes)' datasetBLabel='Confidence level' />
                   </div>
                 </div>
                 );

@@ -200,16 +200,6 @@
       "yAxis": "c_class_1_day",
       "label": "c class",
       "limit": 21
-    },
-    {
-      "_template": "GraphBlock",
-      "api": 0,
-      "xAxis data pointer": "date",
-      "yAxis data pointer": "m_class_1_day",
-      "xAxis": "model_prediction_time",
-      "yAxis": "k",
-      "label": "K index",
-      "limit": 40
     }
   ],
   "aaa": [

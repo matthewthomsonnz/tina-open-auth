@@ -7,13 +7,26 @@ import {
 } from 'react-tinacms-github'
 import { usePlugin, useFormScreenPlugin } from 'tinacms'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { InlineForm, InlineGroup } from "react-tinacms-inline";
 import GraphBlock from './../blocks/GraphBlock'
 import InfoBlock from './../blocks/InfoBlock'
 
 import { Graph } from '../components/Graph';
+import { useState, useEffect } from 'react'
 
-export default function Home({ file, preview, nav }) {
+export default function Home({ file, preview, nav , api}) {
+  var apis = api.data.api.items.map((item)=>{
+    return fetch(item.link).then((res)=>res.json())
+  });
+
+  var apiData = Promise.all(apis);
+  var test = [];
+  const [apiInfo, setapiInfo] = useState(test);
+
+  useEffect(() => {
+    apiData.then((data)=>{
+      test = data;
+      setapiInfo(test);
+    })},[]);
 
   const formOptions = {
     label: 'Page',
@@ -34,16 +47,13 @@ export default function Home({ file, preview, nav }) {
   usePlugin(form)
 
   useGithubToolbarPlugins()
-  return (
-    <div className="container">
+   return (
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-      <h1 className="title">
-          {data.title}
-        </h1>
         {data.items && data.items.map(function (item, index) {
           switch (item._template) {
             case "InfoBlock":
@@ -55,31 +65,17 @@ export default function Home({ file, preview, nav }) {
                 </div>
               </div>
               );
-              break;
               case "GraphBlock":
                 return (
                   <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
                   <div className="container">
-
-                  <Graph 
-                  title='Probability'
-                  graphStyle='line'
-                  colorA='rgba(188, 225, 98, 1)'
-                  datasetA={[40, 20, 50, 45, 10, 10, 20]}
-                  colorB='rgba(195, 138, 255, 1)'
-                  datasetB={[70, 65, 60, 55, 50, 45, 40]}
-                  xAxisLabel='(in minutes)'
-                  datasetBLabel='Confidence level'
-                /></div>
+                    <Graph title={item.label} xAxis={item.xAxis} limit={item.limit} yAxis={item.yAxis} graphStyle='bar' colorA='rgba(188, 225, 98, 1)' datasetA={apiInfo[item.api]} colorB='rgba(195, 138, 255, 1)' datasetB={apiInfo[item.api]} xAxisLabel='(in minutes)' datasetBLabel='Confidence level' />
+                  </div>
                 </div>
                 );
-                break;
-            default:
-              break;
+            default: break;
           }
-          
-
-              })}
+        })}
       </main>
     </div>
   )
@@ -118,7 +114,7 @@ export async function getStaticProps({
 
   var data = (await import(`../content/${params.id}.json`))
   
-  console.log(data);
+
   data = data.default
   // if (typeof window === 'undefined' &&)
   return {

@@ -1,10 +1,22 @@
 {
   "items": [
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "limit": 5,
+      "label": "geospace dst 7_day",
+      "xAxis": "time_tag",
+      "yAxis": "dst",
+      "api": 5
     },
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "api": 0,
+      "xAxis data pointer": "date",
+      "yAxis data pointer": "m_class_1_day",
+      "xAxis": "model_prediction_time",
+      "yAxis": "k",
+      "label": "K index",
+      "limit": 40
     }
   ]
 }

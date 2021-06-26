@@ -19,6 +19,18 @@ body, #app, #__next, div[class^="SiteWrapper"]  {
   margin: 0; padding: 0;
 }
 
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 html {
-  min-height: 100%;
+  min-height: 100%; /* We keep this right? */
+}
+
+#__next > button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }

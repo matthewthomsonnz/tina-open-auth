@@ -23,14 +23,6 @@
       "yAxis": "c_class_1_day",
       "xAxis": "date",
       "api": 4
-    },
-    {
-      "_template": "GraphBlock",
-      "limit": 5,
-      "label": "geospace_dst_7_day",
-      "xAxis": "time_tag",
-      "yAxis": "dst",
-      "api": 5
     }
   ]
 }

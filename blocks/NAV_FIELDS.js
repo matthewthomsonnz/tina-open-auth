@@ -27,6 +27,16 @@ export const NAV_FIELDS = [
       component: "text",
     },
     {
+      label: "background color",
+      name: "backgroundColor",
+      component: "color",
+    },
+    {
+      label: "text color",
+      name: "textColor",
+      component: "color",
+    },
+    {
       label: "Nav Items",
       name: "nav.items",
       component: "group-list",
