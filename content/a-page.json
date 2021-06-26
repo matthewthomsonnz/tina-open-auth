@@ -6,7 +6,10 @@
     },
     {
       "_template": "GraphBlock",
-      "limit": 3
+      "limit": 3,
+      "api": 3,
+      "xAxis": "time_tag",
+      "yAxis": "k_index"
     },
     {
       "_template": "GraphBlock",
