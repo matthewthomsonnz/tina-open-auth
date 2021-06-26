@@ -5,7 +5,7 @@
       "limit": 44,
       "label": "planetary_k_index_1m",
       "api": 2,
-      "xAxis": "time_tag",
+      "xAxis": "",
       "yAxis": "kp_index"
     },
     {
