@@ -74,8 +74,6 @@ export class Graph extends React.Component {
   }
   renderGraph(){
     var graphFormat = this.props.datasetA && this.props.datasetA.slice(0, this.props.limit).map((item)=>{
-      console.log(item);
- 
       return {x: item[this.props.xAxis], y:item[this.props.yAxis]}
     })
 
@@ -151,6 +149,51 @@ export class Graph extends React.Component {
   render(state,props) {
     return (
       <div className="container graph">
+ <style global jsx>{`
+ .btn-show-info {
+  border-radius: 999px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  text-align: center;
+  background-color: rgba(255,255,255,0.1);
+  cursor: pointer;
+  user-select: none;
+  top: 0;
+  right: 0;
+  bottom:0;
+  line-height: 30px;
+}
+
+.graph {
+  position: relative;
+}
+.graph .btn-show-info {
+  position: absolute;
+
+}
+
+.info {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0f1c32;
+  padding: 20px;
+  border: 1px solid #bce162;
+  border-radius: 20px 20px 0 0;
+  z-index: 5;
+}
+
+.info.active{
+  background-color: #bce162;
+}
+
+        `}</style>
+
+
+
         <h2>{this.props.title}</h2>
         <canvas ref={this.chartRef} />
         <InfoModal/>

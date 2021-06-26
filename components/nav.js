@@ -19,9 +19,9 @@ export const Nav = ({ data }) => {
    color: ${data.textColor ? data.textColor : 'none'};
    ${data.top ? 'top: calc('+data.top+');' : ''}
    ${data.left ? 'left: calc('+data.left+');' : ''}
-   ${data.top && data.top.includes('%') || data.left  && data.left.includes('%')  ? `transform: translate(-${data.left}, -${data.top});`:''}
+  //  ${data.top && data.top.includes('%') || data.left  && data.left.includes('%')  ? `transform: translate(-${data.left}, -${data.top});`:''}
   border-radius: 999px;
-
+  z-index: 1;
  }
 
         `}</style>

@@ -38,7 +38,7 @@ export default function Home({ file, preview, nav, api }) {
         label: "Repeater Items",
         component: "blocks",
         itemProps: (item) => ({ label: item.label, }),
-        onSubmit: async () => { console.log('fff'); },
+        onSubmit: async () => {  },
         templates: { InfoBlock, GraphBlock },
       },
     ],

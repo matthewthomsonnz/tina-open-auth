@@ -61,14 +61,9 @@ export class JsonCreatorPlugin<FormShape = any, FrontmatterShape = any>
   }
 
   async onSubmit(form: FormShape, cms: TinaCMS) {
-    console.log(this);
     
     const fileRelativePath = await this.filename(form)
     const content = await this.data(form)
-    console.log('hullo');
-    console.log(fileRelativePath)
-    console.log(content)
-    
 
 cms.api.github.upload(fileRelativePath, "{}", "new file");
 

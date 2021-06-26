@@ -34,3 +34,7 @@ html {
   bottom: 0;
   left: 0;
 }
+
+.block {
+  padding: 20px 0;
+}
