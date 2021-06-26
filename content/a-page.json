@@ -2,7 +2,7 @@
   "items": [
     {
       "_template": "GraphBlock",
-      "limit": 8,
+      "limit": 17,
       "label": "planetary_k_index_1m",
       "api": 2,
       "xAxis": "",
