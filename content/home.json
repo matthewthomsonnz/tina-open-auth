@@ -198,8 +198,8 @@
       "api": 1,
       "xAxis": "date",
       "yAxis": "c_class_1_day",
-      "label": "some label",
-      "limit": 10
+      "label": "c class",
+      "limit": 21
     },
     {
       "_template": "GraphBlock",
@@ -209,7 +209,7 @@
       "xAxis": "model_prediction_time",
       "yAxis": "k",
       "label": "K index",
-      "limit": 30
+      "limit": 40
     }
   ],
   "aaa": [
