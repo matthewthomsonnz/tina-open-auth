@@ -194,7 +194,8 @@
   },
   "items": [
     {
-      "_template": "GraphBlock"
+      "_template": "GraphBlock",
+      "api": 1
     }
   ],
   "aaa": [
