@@ -10,7 +10,11 @@
     },
     {
       "_template": "GraphBlock",
-      "limit": 4
+      "limit": 4,
+      "label": "solar_probabilities",
+      "yAxis": "c_class_1_day",
+      "xAxis": "date",
+      "api": 4
     },
     {
       "_template": "GraphBlock",
