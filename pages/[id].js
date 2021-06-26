@@ -14,30 +14,20 @@ import InfoBlock from './../blocks/InfoBlock'
 import { Graph } from '../components/Graph';
 
 export default function Home({ file, preview, nav }) {
+
   const formOptions = {
-    label: 'Home Page',
+    label: 'Page',
     fields: [
       {
         name: "items",
         label: "Repeater Items",
         component: "blocks",
-        // itemProps: (item) => ({
-        //   label: item.label,
-        // }),
-        onSubmit: async () => {
-          console.log('fff');
-          
-        },
-        templates: {
-          InfoBlock,
-          GraphBlock
-        },
-
+        itemProps: (item) => ({ label: item.label, }),
+        onSubmit: async () => { console.log('fff'); },
+        templates: { InfoBlock, GraphBlock },
       },
     ],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
+    onSubmit: (values) => { alert(`Submitting ${values.title}`) }
   }
   
   const [data, form] = useGithubJsonForm(file, formOptions)

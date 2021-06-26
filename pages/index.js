@@ -16,25 +16,18 @@ import { Graph } from '../components/Graph';
 export default function Home({ file, preview, nav, api }) {
 
   var apis = api.data.api.items.map((item)=>{
-return fetch(item.link).then((res)=>res.json())
-  })
-
+    return fetch(item.link).then((res)=>res.json())
+  });
 
   var apiData = Promise.all(apis);
-var test = []
+  var test = [];
   const [apiInfo, setapiInfo] = useState(test);
 
   useEffect(() => {
-      apiData.then((data)=>{
-
-  test = data[0].map((item)=>{
-    console.log(item);
-    return {x: item.model_prediction_time, y:item.k}
-      })
-  setapiInfo(test); 
-  })
-  } 
-  , []);
+    apiData.then((data)=>{
+      test = data[0].map((item)=>{ return {x: item.model_prediction_time, y:item.k}})
+      setapiInfo(test);
+    })},[]);
 
   const formOptions = {
     label: 'Home Page',
@@ -43,29 +36,16 @@ var test = []
         name: "items",
         label: "Repeater Items",
         component: "blocks",
-        // itemProps: (item) => ({
-        //   label: item.label,
-        // }),
-        onSubmit: async () => {
-          console.log('fff');
-          
-        },
-        templates: {
-          InfoBlock,
-          GraphBlock
-        },
-
+        itemProps: (item) => ({ label: item.label, }),
+        onSubmit: async () => { console.log('fff'); },
+        templates: { InfoBlock, GraphBlock },
       },
     ],
-    onSubmit: (values) => {
-      alert(`Submitting ${values.title}`)
-    }
+    onSubmit: (values) => { alert(`Submitting ${values.title}`) }
   }
-
   
   const [data, form] = useGithubJsonForm(file, formOptions)
   usePlugin(form)
-
   useGithubToolbarPlugins()
 
   return (
@@ -74,18 +54,8 @@ var test = []
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-        <style global jsx>{`
-          div {
-            background-color: 'blue'}
-          }
-        `}</style>
-
       <main>
-
-        <h1 className="title">
-          {data.title}
-        </h1>
+        <h1 className="title">{data.title}</h1>
         {data.items && data.items.map(function (item, index) {
           switch (item._template) {
             case "InfoBlock":
@@ -97,33 +67,18 @@ var test = []
                 </div>
               </div>
               );
-              break;
               case "GraphBlock":
                 return (
                   <div className="block" style={{backgroundColor:item.backgroundColor, color: item.textColorOverride}}>
                   <div className="container">
-
-                  <Graph 
-                  title='Probability'
-                  graphStyle='bar'
-                  colorA='rgba(188, 225, 98, 1)'
-                  datasetA={apiInfo}
-                  colorB='rgba(195, 138, 255, 1)'
-                  datasetB={apiInfo}
-                  xAxisLabel='(in minutes)'
-                  datasetBLabel='Confidence level'
-                /></div>
+                    <Graph title='Probability' graphStyle='bar' colorA='rgba(188, 225, 98, 1)' datasetA={apiInfo} colorB='rgba(195, 138, 255, 1)' datasetB={apiInfo} xAxisLabel='(in minutes)' datasetBLabel='Confidence level' />
+                  </div>
                 </div>
                 );
-                break;
-            default:
-              break;
+            default: break;
           }
-          
-
-              })}
+        })}
       </main>
-
     </div>
   )
 }
