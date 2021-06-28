@@ -73,54 +73,46 @@ export class Graph extends React.Component {
     this.renderGraph();
   }
   renderGraph(){
-    var graphFormat = this.props.datasetA && this.props.datasetA.slice(0, this.props.limit).map((item)=>{
-      return {x: item[this.props.xAxis], y:item[this.props.yAxis]}
+    var graphFormat = this.props.datasetA && this.props.datasetA.slice(0, this.props.limit).map((item, i)=>{
+      if (this.props.xAxis) return {x: item[this.props.xAxis], y:item[this.props.yAxis]}
+      var xKey = 0;
+      xKey = i === 0 ? "Now" : (i * 5).toString();
+      console.log(i);
+      return {x: xKey, y:item[this.props.yAxis]}
     })
-
-
-    var chartData = {
+    console.log(this.props.xAxis);
+    var chartData = { 
+      type: this.props.graphStyle,
       options: {
-        legend: {
-          align: 'end',
-          labels: {
-            usePointStyle: true,
-            fontColor: this.props.colorB,
-            filter: function(item, chart,a) { return item.text !== undefined; },
-            generateLabels: function(chart){
-              return chart.data.datasets.map((data, i) => { return { text: data.label, fillStyle: data.borderColor, fontColor: 'red', index: i }; })
-            }
-          }
-        },
-        scales: {
-          yAxes: [{
-            ticks:{
-              fontColor: "#c2c2c2",
-              fontSize: 14,
-              max: 1,
-              min: 0,
-              stepSize:0.1,
-              callback: function(value, index, values) {
-                return isNaN(value ) ? value : value;
+
+        plugins: {
+            // title: {
+            //     display: true,
+            //     text: 'Chart Title'
+            // },
+            legend: {
+              align: 'end',
+
+              labels: {
+                usePointStyle: true,
+                pointStyle: 'circle',
+                filter: (a,b)=>{
+                  console.log(a);
+                  return a.text
+
+                }
               }
             }
-          }],
-          xAxes:[{
-            ticks:{
-              fontColor: "#c2c2c2",
-              fontSize: 14,
-                // stepSize: 1,
-                // beginAtZero: true
-            },
-            scaleLabel: {
-              display: true,  
-              fontColor: '#c2c2c2',
-              labelString: this.props.xAxisLabel
+        },
+        scales: {
+            y: {
+              beginAtZero: false,
+                // suggestedMin: 0,
+                suggestedMax: 0,
+                // max: 0,
             }
-          }]
         }
-      },
-      type: this.props.graphStyle,
-
+    },
       data: {
         datasets: [{
             data: graphFormat,
@@ -130,14 +122,14 @@ export class Graph extends React.Component {
             scaleSteps:1,
             scaleStartValue:1,
             scaleStepWidth:1,
-            label: undefined,
-            pointRadius:0
+            label: null,
+            pointRadius:0,
         },
         {
           type: 'line',
+          data: graphFormat,
           borderColor: this.props.colorB,
           backgroundColor: this.props.colorB.replace('1)','0.1)'),
-          data: this.props.datasetB,
           order: 1,
           pointRadius:0,
           label: this.props.datasetBLabel
@@ -145,6 +137,8 @@ export class Graph extends React.Component {
       }
     };
     this.myChart = new Chart(this.chartRef.current, chartData);
+
+    console.log(this.myChart);
   }
   render(state,props) {
     return (
@@ -181,7 +175,6 @@ export class Graph extends React.Component {
   bottom: 0;
   background-color: #0f1c32;
   padding: 20px;
-  border: 1px solid #bce162;
   border-radius: 20px 20px 0 0;
   z-index: 5;
 }
